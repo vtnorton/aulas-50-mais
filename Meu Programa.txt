@@ -1,7 +1,7 @@
 Meu primeiro programa.
 Cadastrar um usuário.
 Deletar um usuário.
-
+aula  terca-feira
 
 
 Visualizar produtos cadastrados.
