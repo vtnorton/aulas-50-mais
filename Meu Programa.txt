@@ -3,4 +3,6 @@ Cadastrar um usuário.
 Deletar um usuário.
 
 
+Visualizar produtos cadastrados.
+
 https://github.com/vtnorton/aulas-50-mais.gi´
