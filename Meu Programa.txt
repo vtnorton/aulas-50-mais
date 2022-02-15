@@ -1,5 +1,6 @@
 Meu primeiro programa.
 Cadastrar um usuário.
+Deletar um usuário.
 
 
 https://github.com/vtnorton/aulas-50-mais.gi´
