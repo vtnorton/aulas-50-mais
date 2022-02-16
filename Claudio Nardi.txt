@@ -1,2 +1,6 @@
 Exercitando no GIT :)
+
 Alteração em main
+
+Alteração na branch1
+
