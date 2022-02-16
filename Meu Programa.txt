@@ -1,4 +1,0 @@
-## Aula de desenvolvimento web com C#
-Material de apoio para as aulas.
-
-https://github.com/vtnorton/aulas-50-mais.git
