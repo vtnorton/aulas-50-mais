@@ -6,7 +6,7 @@ namespace BancoRoxinho.Dominio
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Bem vindo ao Banco Roxinho");
         }
     }
 }
