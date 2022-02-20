@@ -8,31 +8,53 @@ namespace BancoRoxinho.Dominio
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bem vindo ao banco Roxinho");
-            Console.WriteLine("Escolha um número para prosseguir:");
-            Console.WriteLine("1 - Cadastrar pessoa física");
-            Console.WriteLine("2 - Ler pessoas físicas cadastrada");
+            string opcao = "S";
+            int escolhaDoUsuario;
 
-            int escolhaDoUsuario = int.Parse(Console.ReadLine());
-            if(escolhaDoUsuario == 1)
+            while (opcao.Equals("S"))
             {
-                EscolheuAOpcaoCadastrarPessoa();
+                Console.Clear();
+                Console.WriteLine("Bem vindo ao banco Roxinho");
+                Console.WriteLine("Escolha um número para prosseguir:");
+                Console.WriteLine("1 - Cadastrar pessoa física");
+                Console.WriteLine("2 - Ler pessoas físicas cadastradas");
+                Console.WriteLine("3 - Cadastrar pessoas juridicas ");
+                Console.WriteLine("4 - Ler pessoas juridicas cadastradas ");
+
+                escolhaDoUsuario = int.Parse(Console.ReadLine());
+                if (escolhaDoUsuario == 1)
+                {
+                    EscolheuAOpcaoCadastrarPessoa();
+                }
+
+                if (escolhaDoUsuario == 2)
+                {
+                    EscolheuAOpcaoDeVerPessoasFisicas();
+                }
+                if (escolhaDoUsuario == 3)
+                {
+                    EscolheuAOpcaoCadastrarPessoaJuridica();
+                }
+
+                if (escolhaDoUsuario == 4)
+                {
+                    EscolheuAOpcaoDeVerPessoasJuridicas();
+                }
+                Console.WriteLine("Deseja realizar outra operação (S/N)");
+                opcao = Console.ReadLine();
+
             }
 
-            if(escolhaDoUsuario == 2)
-            {
-                EscolheuAOpcaoDeVerPessoasFisicas();
-            }
-
-            Console.Read();
+            //Console.Read();
         }
 
+       
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
             var listaPessoas = PessoasRepository.PessoasFisicas;
 
             // Explicar melhor na próxima aula
-            for (int contador = 0; contador <= listaPessoas.Count; contador++)
+            for (int contador = 0; contador < listaPessoas.Count; contador++)
             {
                 // Explicar melhor na próxima aula
                 var pessoa = listaPessoas[contador];
@@ -40,7 +62,7 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("Pessoa de Nº " + contador);
                 Console.WriteLine("Nome da pessoa: " + pessoa.Nome);
                 Console.WriteLine("Idade da pessoa: " + pessoa.Idade);
-                Console.WriteLine("Conta da pessoa: " + pessoa.ContaCorrente.NumeroDaConta);
+                Console.WriteLine("Conta da pessoa: " + pessoa.CPF);
                 Console.WriteLine("");
             }
         }
@@ -52,5 +74,32 @@ namespace BancoRoxinho.Dominio
 
             PessoasRepository.PessoasFisicas.Add(pessoaCadastrada);
         }
+        private static void EscolheuAOpcaoDeVerPessoasJuridicas()
+        {
+
+            var listaPessoasJuridicas = PessoasRepository.PessoaJuridicas;
+
+            for (int contador = 0; contador < listaPessoasJuridicas.Count; contador++)
+            {
+                
+                var pessoaJuridica = listaPessoasJuridicas[contador];
+                Console.WriteLine("");
+                Console.WriteLine("Empresa de Nº " + contador);
+                Console.WriteLine("Nome da empresa: " + pessoaJuridica.RazaoSocial);
+                Console.WriteLine("CNPJ da pessoa: " + pessoaJuridica.CNPJ);
+               
+                Console.WriteLine("");
+            }
+        }
+
+        private static void EscolheuAOpcaoCadastrarPessoaJuridica()
+        {
+            var pessoaJuridica = new PessoaJuridica();
+            var pessoaJuridicaCadastrada = pessoaJuridica.CadastrarPessoaJuridica();
+
+            PessoasRepository.PessoaJuridicas.Add(pessoaJuridicaCadastrada);
+
+        }
+
     }
 }
