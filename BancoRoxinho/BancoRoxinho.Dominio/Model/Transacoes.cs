@@ -6,7 +6,5 @@
         public string Descricao;
         public ContaCorrente ContaOrigem = new ContaCorrente();
         public ContaCorrente ContaDestino = new ContaCorrente();
-
-
     }
 }
