@@ -9,10 +9,10 @@ namespace BancoRoxinho.Dominio.Model
         public string CNPJ = "00.000.000/0000-00";
         public string Nome;
 
-        bool VerificarCNPJ()
+        bool VerificarCNPJ(string cnpjASerValidado)
         {
             var verificador = new Main();
-            var cnpjValido = verificador.IsValidCPFCNPJ(CNPJ);
+            var cnpjValido = verificador.IsValidCPFCNPJ(cnpjASerValidado);
             if(!cnpjValido)
             {
                 Console.WriteLine("CNPJ Inválido");
@@ -20,25 +20,24 @@ namespace BancoRoxinho.Dominio.Model
             }
             return cnpjValido;
         }
-    public PessoaJuridica CadastrarPessoaJuridica(PessoaJuridica pessoa)
+    public PessoaJuridica CadastrarPessoaJuridica()
         {
             var pessoaJuridica = new PessoaJuridica();
 
             Console.WriteLine("Digite o nome da Empresa: ");
-            pessoa.Nome = Console.ReadLine();
-
-            Console.WriteLine("Digite o CNPJ da Empresa: " + pessoaJuridica.CNPJ + ":");
+            pessoaJuridica.Nome = Console.ReadLine();
+            
+            Console.WriteLine("Digite o CNPJ da Empresa: " + pessoaJuridica.Nome + ":");
             pessoaJuridica.CNPJ = Console.ReadLine();
 
 
-            bool cnpjValido = VerificarCNPJ(PessoaJuridica.CNPJ);
+            bool cnpjValido = VerificarCNPJ(pessoaJuridica.CNPJ);
             if (!cnpjValido)
             {
-                Console.WriteLine("CNPJ Inválido");
-                return null;
+               return null;
             }
 
-            return pessoa;
+            return pessoaJuridica;
         }
     }
 }

@@ -9,10 +9,10 @@ namespace BancoRoxinho.Dominio.Model
         public string CPF = "000.000.000-00";
         public string Nome;
 
-        bool VerificarCPF(string cpfASerValdido)
+        bool VerificarCPF(string cpfASerValidado)
         {
             var verificador = new Main();
-            var cpfValido = verificador.IsValidCPFCNPJ(cpfASerValdido);
+            var cpfValido = verificador.IsValidCPFCNPJ(cpfASerValidado);
             return cpfValido;
         }
 
@@ -43,7 +43,7 @@ namespace BancoRoxinho.Dominio.Model
                 Console.WriteLine("CPF inválido.");
                 return null;
             }
-            
+
             Console.WriteLine("Digite a idade da pessoa");
             pessoa.Idade = int.Parse(Console.ReadLine());
             bool idadeValida = VerificarMaioridade(pessoa.Idade);
@@ -55,5 +55,6 @@ namespace BancoRoxinho.Dominio.Model
             Console.Clear();
 
             return pessoa;
-        } 
+        }
     }
+}
