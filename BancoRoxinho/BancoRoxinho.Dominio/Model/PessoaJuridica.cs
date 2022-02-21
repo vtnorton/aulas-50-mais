@@ -4,10 +4,7 @@ using CPFCNPJ;
 namespace BancoRoxinho.Dominio.Model
 {
     // Pessoa Juridica herda Pessoa
-<<<<<<< HEAD
-    
-=======
->>>>>>> c35510f7e0b524b8ee26d6f625b7bba17a1a820b
+
     public class PessoaJuridica : Pessoa
     {
 

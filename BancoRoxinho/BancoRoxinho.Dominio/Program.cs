@@ -12,10 +12,7 @@ namespace BancoRoxinho.Dominio
             Console.WriteLine("Escolha um número para prosseguir:");
             Console.WriteLine("1 - Cadastrar pessoa física");
             Console.WriteLine("2 - Ler pessoas físicas cadastrada");
-<<<<<<< HEAD
             Console.WriteLine("3 - Cadastrar pessoa Juridica");
-=======
->>>>>>> c35510f7e0b524b8ee26d6f625b7bba17a1a820b
 
             int escolhaDoUsuario = int.Parse(Console.ReadLine());
             if(escolhaDoUsuario == 1)
@@ -28,13 +25,10 @@ namespace BancoRoxinho.Dominio
                 EscolheuAOpcaoDeVerPessoasFisicas();
             }
 
-<<<<<<< HEAD
             if (escolhaDoUsuario == 3)
             {
                 EscolheuAOpcaoCadastrarPessoaJuridica();
             }
-            Console.Read();
-=======
             Console.Read();
         }
 
@@ -62,7 +56,7 @@ namespace BancoRoxinho.Dominio
             var pessoaCadastrada = pessoa.CadastrarPessoa();
 
             PessoasRepository.PessoasFisicas.Add(pessoaCadastrada);
->>>>>>> c35510f7e0b524b8ee26d6f625b7bba17a1a820b
+
         }
 
         static void EscolheuAOpcaoDeVerPessoasFisicas()
