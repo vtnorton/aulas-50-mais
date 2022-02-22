@@ -18,14 +18,7 @@ namespace BancoRoxinho.Dominio.Model
 
         bool VerificarMaioridade(int idade)
         {
-            if (idade >= 18)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return idade >= 18 ? true : false;
         }
 
         public PessoaFisica CadastrarPessoa()
