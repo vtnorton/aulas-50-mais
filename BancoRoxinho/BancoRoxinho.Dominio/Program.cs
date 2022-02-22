@@ -8,41 +8,59 @@ namespace BancoRoxinho.Dominio
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Bem vindo ao banco Roxinho");
-            Console.WriteLine("Escolha um número para prosseguir:");
-            Console.WriteLine("1 - Cadastrar pessoa física");
-            Console.WriteLine("2 - Ler pessoas físicas cadastrada");
-
-            int escolhaDoUsuario = int.Parse(Console.ReadLine());
-            if(escolhaDoUsuario == 1)
+            // do while
+            // faça enquanto
+            bool continuarNoPrograma = true;
+            do
             {
-                EscolheuAOpcaoCadastrarPessoa();
-            }
+                Console.WriteLine("Bem vindo ao banco Roxinho");
+                Console.WriteLine("Escolha um número para prosseguir:");
+                Console.WriteLine("1 - Cadastrar pessoa física");
+                Console.WriteLine("2 - Ler pessoas físicas cadastrada");
+                Console.WriteLine("0 - Sair");
 
-            if(escolhaDoUsuario == 2)
-            {
-                EscolheuAOpcaoDeVerPessoasFisicas();
-            }
+                int escolhaDoUsuario = int.Parse(Console.ReadLine());
 
-            Console.Read();
+                // switch case
+                // mudar  caso
+                switch (escolhaDoUsuario)
+                {
+                    case 1:
+                        EscolheuAOpcaoCadastrarPessoa();
+                        break;
+                    case 2:
+                        EscolheuAOpcaoDeVerPessoasFisicas();
+                        break;
+                    case 0:
+                    default: //padrão
+                        continuarNoPrograma = false;
+                        break;
+                }
+
+            } while (continuarNoPrograma);
         }
 
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
             var listaPessoas = PessoasRepository.PessoasFisicas;
 
-            // Explicar melhor na próxima aula
-            for (int contador = 0; contador <= listaPessoas.Count; contador++)
+            /* 
+                foreach (var pessoa in listaPessoas)
+                {
+
+                }
+            */
+
+            listaPessoas.ForEach(pessoa =>
             {
-                // Explicar melhor na próxima aula
-                var pessoa = listaPessoas[contador];
                 Console.WriteLine("");
-                Console.WriteLine("Pessoa de Nº " + contador);
+                // Mostrar na aula de arrays/listas
+                Console.WriteLine("Pessoa de Nº ");
                 Console.WriteLine("Nome da pessoa: " + pessoa.Nome);
                 Console.WriteLine("Idade da pessoa: " + pessoa.Idade);
                 Console.WriteLine("Conta da pessoa: " + pessoa.ContaCorrente.NumeroDaConta);
                 Console.WriteLine("");
-            }
+            });
         }
 
         static void EscolheuAOpcaoCadastrarPessoa()
