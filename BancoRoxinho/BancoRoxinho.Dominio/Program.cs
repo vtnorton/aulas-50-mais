@@ -52,6 +52,20 @@ namespace BancoRoxinho.Dominio
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
             var listaPessoas = PessoasRepository.PessoasFisicas;
+            //for, foreach, while, do while
+            //para, para cada
+
+            listaPessoas.ForEach(pessoa =>
+            {
+                Console.WriteLine("");
+                //Mostrar na aula de array/listas
+                Console.WriteLine("Pessoa de Nº ");
+                Console.WriteLine("Nome da pessoa: " + pessoa.Nome);
+                Console.WriteLine("Idade da pessoa: " + pessoa.Idade);
+                Console.WriteLine("Conta da pessoa: " + pessoa.CPF);
+                Console.WriteLine("");
+
+            });
 
             // Explicar melhor na próxima aula
             for (int contador = 0; contador < listaPessoas.Count; contador++)
