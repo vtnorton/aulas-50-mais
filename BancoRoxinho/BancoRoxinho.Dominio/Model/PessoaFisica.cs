@@ -16,7 +16,7 @@ namespace BancoRoxinho.Dominio.Model
             return cpfValido;
         }
 
-        bool VerificarMaioridade(int idade)
+        public bool VerificarMaioridade(int idade)
         {
             if (idade >= 18)
             {
