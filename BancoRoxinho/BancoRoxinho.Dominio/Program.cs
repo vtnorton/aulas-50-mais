@@ -17,6 +17,8 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("Escolha um número para prosseguir:");
                 Console.WriteLine("1 - Cadastrar pessoa física");
                 Console.WriteLine("2 - Ler pessoas físicas cadastrada");
+                Console.WriteLine("3 - Cadastrar pessoa jurídica");
+                Console.WriteLine("4 - Ler pessoas jurídicas");
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -31,6 +33,12 @@ namespace BancoRoxinho.Dominio
                         break;
                     case 2:
                         EscolheuAOpcaoDeVerPessoasFisicas();
+                        break;
+                    case 3:
+                        EscolheuAOpcaoCadastrarPJ();
+                        break;
+                    case 4:
+                        EscolheuAOpcaoDeVerPJs();
                         break;
                     case 0:
                     default: //padrão
@@ -69,7 +77,34 @@ namespace BancoRoxinho.Dominio
             var pessoa = new PessoaFisica();
             var pessoaCadastrada = pessoa.CadastrarPessoa();
 
-            PessoasRepository.PessoasFisicas.Add(pessoaCadastrada);
+            if (pessoaCadastrada != null)
+            {
+                PessoasRepository.PessoasFisicas.Add(pessoaCadastrada);
+            }
         }
+
+        static void EscolheuAOpcaoCadastrarPJ()
+        {
+            var pj = new PessoaJuridica();
+            var pjCadastrada = pj.CadastrarPessoa();
+
+            if (pjCadastrada != null)
+            {
+               PessoasRepository.PessoaJuridicas.Add(pjCadastrada);
+            }
+        }
+
+        static void EscolheuAOpcaoDeVerPJs()
+        {
+            var listaPJs = PessoasRepository.PessoaJuridicas;
+
+            foreach(var pessoa in listaPJs)
+            {
+                Console.WriteLine("\nEmpresa: " + pessoa.Nome);
+                Console.WriteLine("CNPJ: "+pessoa.CNPJ+"\n");
+            }
+
+        }
+
     }
 }
