@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoRoxinho", "BancoRoxinh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoRoxinho.Dominio", "BancoRoxinho.Dominio\BancoRoxinho.Dominio.csproj", "{0E359CE0-97B8-4BF5-9304-48D07138487F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoRoxinho.Dominio.Test", "BancoRoxinho.Dominio.Test\BancoRoxinho.Dominio.Test.csproj", "{92FB0E1B-7875-42C5-A22A-CA280270D016}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0E359CE0-97B8-4BF5-9304-48D07138487F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E359CE0-97B8-4BF5-9304-48D07138487F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E359CE0-97B8-4BF5-9304-48D07138487F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92FB0E1B-7875-42C5-A22A-CA280270D016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92FB0E1B-7875-42C5-A22A-CA280270D016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92FB0E1B-7875-42C5-A22A-CA280270D016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92FB0E1B-7875-42C5-A22A-CA280270D016}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
