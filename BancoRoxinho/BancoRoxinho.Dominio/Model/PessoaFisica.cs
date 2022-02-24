@@ -5,9 +5,49 @@ namespace BancoRoxinho.Dominio.Model
 {
     public class PessoaFisica : Pessoa
     {
-        public int Idade;
-        public string CPF = "000.000.000-00";
-        public string Nome;
+        public int Idade { get; private set; }
+        public string CPF { get; set; }
+        public string NomeDaMae { get; set; }
+        private string _nome;
+        private string _sobrenome;
+        
+        private bool _maiorIdade;
+
+        public bool MaiorIdade
+        {
+            get {
+                if (Idade >= 18)
+                {
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public void SetNome(string nomeASerDefinido)
+        {
+            _nome = nomeASerDefinido;
+        }
+
+        public void SetSobreNome(string sobrenomeASerDefinido)
+        {
+            _sobrenome = sobrenomeASerDefinido;
+        }
+
+        public string GetNomeCompleto()
+        {
+            return _nome + "" + _sobrenome;
+        } 
+
+
+        public bool GetMaiorIdade()
+        {
+            return _maiorIdade;
+        }
 
         bool VerificarCPF(string cpfASerValidado)
         {
@@ -16,23 +56,17 @@ namespace BancoRoxinho.Dominio.Model
             return cpfValido;
         }
 
-       public bool VerificarMaioridade(int idade)
-        {
-            if (idade >= 18)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public PessoaFisica CadastrarPessoa()
         {
             var pessoa = new PessoaFisica();
             Console.WriteLine("Digite o nome da pessoa: ");
-            pessoa.Nome = Console.ReadLine();
+            String nomeRecebido = Console.ReadLine();
+            SetNome(nomeRecebido);
+
+            Console.WriteLine("Digite o sobrenome da pessoa: ");
+            String sobrenomeRecebido = Console.ReadLine();
+            SetSobreNome(nomeRecebido);
+
 
             Console.WriteLine("Digite o CPF de " + pessoa.Nome + ":");
             pessoa.CPF = Console.ReadLine();

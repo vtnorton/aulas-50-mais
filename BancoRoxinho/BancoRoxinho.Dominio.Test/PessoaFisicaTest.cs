@@ -37,6 +37,8 @@ namespace BancoRoxinho.Dominio.Test
             int idade = 10;
             bool resultadoEsperado = false;
             var pessoa = new PessoaFisica();
+            pesoa.MaiorIdade;
+            pessoa.DefinirValorDeMaiorIdade(10);
             //executar o programa
             var resultado = pessoa.VerificarMaioridade(idade);
 
