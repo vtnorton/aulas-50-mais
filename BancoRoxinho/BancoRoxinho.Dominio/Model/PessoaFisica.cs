@@ -5,9 +5,42 @@ namespace BancoRoxinho.Dominio.Model
 {
     public class PessoaFisica : Pessoa
     {
-        public int Idade;
-        public string CPF = "000.000.000-00";
-        public string Nome;
+        public int Idade { get; private set; }
+        public string CPF { get; set; }
+        public string NomeDaMae { get; set; }
+
+        private string _nome;
+        private string _sobrenome;
+
+        public bool MaiorIdade {
+            get
+            {
+                if (Idade >= 18)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        // setter = definir
+        public void SetNome(string nomeASerDefinido)
+        {
+            _nome = nomeASerDefinido;
+        }
+
+        public void SetSobrenome(string sobrenomeASerDefinido)
+        {
+            _sobrenome = sobrenomeASerDefinido;
+        }
+
+        public string GetNomeCompleto()
+        {
+            return _nome + " " + _sobrenome;
+        }
 
         bool VerificarCPF(string cpfASerValdido)
         {
@@ -18,23 +51,22 @@ namespace BancoRoxinho.Dominio.Model
 
         public bool VerificarMaioridade(int idade)
         {
-            if (idade >= 18)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return MaiorIdade;
         }
 
         public PessoaFisica CadastrarPessoa()
         {
             var pessoa = new PessoaFisica();
-            Console.WriteLine("Digite o nome da pessoa: ");
-            pessoa.Nome = Console.ReadLine();
 
-            Console.WriteLine("Digite o CPF de " + pessoa.Nome + ":");
+            Console.WriteLine("Digite o nome da pessoa: ");
+            string nomeRecebido = Console.ReadLine();
+            pessoa.SetNome(nomeRecebido);
+
+            Console.WriteLine("Digite o sobrenome da pessoa: ");
+            string sobrenomeRecebido = Console.ReadLine();
+            pessoa.SetSobrenome(sobrenomeRecebido);
+
+            Console.WriteLine("Digite o CPF de " + pessoa.GetNomeCompleto() + ":");
             pessoa.CPF = Console.ReadLine();
 
             bool cpfValido = VerificarCPF(pessoa.CPF);
@@ -46,12 +78,13 @@ namespace BancoRoxinho.Dominio.Model
             
             Console.WriteLine("Digite a idade da pessoa");
             pessoa.Idade = int.Parse(Console.ReadLine());
-            bool idadeValida = VerificarMaioridade(pessoa.Idade);
-            if (!idadeValida)
+
+            if (!pessoa.MaiorIdade)
             {
                 Console.WriteLine("Idade inválida.");
                 return null;
             }
+
             Console.Clear();
 
             return pessoa;

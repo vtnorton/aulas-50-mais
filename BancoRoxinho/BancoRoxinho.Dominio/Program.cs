@@ -16,7 +16,7 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("Bem vindo ao banco Roxinho");
                 Console.WriteLine("Escolha um número para prosseguir:");
                 Console.WriteLine("1 - Cadastrar pessoa física");
-                Console.WriteLine("2 - Ler pessoas físicas cadastrada");
+                Console.WriteLine("2 - Ler pessoas físicas cadastradas");
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -57,7 +57,7 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("");
                 // Mostrar na aula de arrays/listas
                 Console.WriteLine("Pessoa de Nº ");
-                Console.WriteLine("Nome da pessoa: " + pessoa.Nome);
+                Console.WriteLine("Nome da pessoa: " + pessoa.GetNomeCompleto());
                 Console.WriteLine("Idade da pessoa: " + pessoa.Idade);
                 Console.WriteLine("Conta da pessoa: " + pessoa.ContaCorrente.NumeroDaConta);
                 Console.WriteLine("");
