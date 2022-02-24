@@ -9,7 +9,7 @@ namespace BancoRoxinho.Dominio.Model
         public string CNPJ = "00.000.000/0000-00";
         public string Nome;
 
-        bool VerificarCNPJ(string cnpjASerValidado)
+       public bool VerificarCNPJ(string cnpjASerValidado)
         {
             var verificador = new Main();
             var cnpjValido = verificador.IsValidCPFCNPJ(cnpjASerValidado);
