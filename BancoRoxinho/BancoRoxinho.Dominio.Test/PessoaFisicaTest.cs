@@ -15,6 +15,9 @@ namespace BancoRoxinho.Dominio.Test
             bool resultadoEsperado = true;
             var pessoa = new PessoaFisica();
 
+            pessoa.Nome = "Vitor";
+            pessoa.Sobrenome = "Norton";
+
             // executar o programa
             bool resultado = pessoa.VerificarMaioridade(idade);
 

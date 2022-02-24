@@ -5,12 +5,20 @@ namespace BancoRoxinho.Dominio.Model
 {
     public class PessoaFisica : Pessoa
     {
-        public int Idade { get; private set; }
+        public int Idade { get; set; }
         public string CPF { get; set; }
-        public string NomeDaMae { get; set; }
 
-        private string _nome;
-        private string _sobrenome;
+        public string Nome { private get; set; }
+        public string Sobrenome { private get; set; }
+
+        public string NomeCompleto { 
+            get
+            {
+                //VitorNorton
+                //Vitor Norton
+                return Nome + " " + Sobrenome;
+            }
+        }
 
         public bool MaiorIdade {
             get
@@ -24,22 +32,6 @@ namespace BancoRoxinho.Dominio.Model
                     return false;
                 }
             }
-        }
-
-        // setter = definir
-        public void SetNome(string nomeASerDefinido)
-        {
-            _nome = nomeASerDefinido;
-        }
-
-        public void SetSobrenome(string sobrenomeASerDefinido)
-        {
-            _sobrenome = sobrenomeASerDefinido;
-        }
-
-        public string GetNomeCompleto()
-        {
-            return _nome + " " + _sobrenome;
         }
 
         bool VerificarCPF(string cpfASerValdido)
@@ -60,13 +52,13 @@ namespace BancoRoxinho.Dominio.Model
 
             Console.WriteLine("Digite o nome da pessoa: ");
             string nomeRecebido = Console.ReadLine();
-            pessoa.SetNome(nomeRecebido);
+            pessoa.Nome = nomeRecebido;
 
             Console.WriteLine("Digite o sobrenome da pessoa: ");
             string sobrenomeRecebido = Console.ReadLine();
-            pessoa.SetSobrenome(sobrenomeRecebido);
+            pessoa.Sobrenome = sobrenomeRecebido;
 
-            Console.WriteLine("Digite o CPF de " + pessoa.GetNomeCompleto() + ":");
+            Console.WriteLine("Digite o CPF de " + pessoa.NomeCompleto + ":");
             pessoa.CPF = Console.ReadLine();
 
             bool cpfValido = VerificarCPF(pessoa.CPF);

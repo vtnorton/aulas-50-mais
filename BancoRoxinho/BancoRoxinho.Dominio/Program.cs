@@ -57,7 +57,7 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("");
                 // Mostrar na aula de arrays/listas
                 Console.WriteLine("Pessoa de Nº ");
-                Console.WriteLine("Nome da pessoa: " + pessoa.GetNomeCompleto());
+                Console.WriteLine("Nome da pessoa: " + pessoa.NomeCompleto);
                 Console.WriteLine("Idade da pessoa: " + pessoa.Idade);
                 Console.WriteLine("Conta da pessoa: " + pessoa.ContaCorrente.NumeroDaConta);
                 Console.WriteLine("");
@@ -68,6 +68,7 @@ namespace BancoRoxinho.Dominio
         {
             var pessoa = new PessoaFisica();
             var pessoaCadastrada = pessoa.CadastrarPessoa();
+            pessoaCadastrada.ContaCorrente.Saldo = 200;
 
             PessoasRepository.PessoasFisicas.Add(pessoaCadastrada);
         }
