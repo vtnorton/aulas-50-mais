@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoRoxinho", "BancoRoxinh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoRoxinho.Dominio", "BancoRoxinho.Dominio\BancoRoxinho.Dominio.csproj", "{0E359CE0-97B8-4BF5-9304-48D07138487F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoRoxinho.Dominio.Test", "BancoRoxinho.Dominio.Test\BancoRoxinho.Dominio.Test.csproj", "{11904B6D-55D2-47E9-8954-37711EC48020}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoRoxinho.Dominio.Test", "BancoRoxinho.Dominio.Test\BancoRoxinho.Dominio.Test.csproj", "{11904B6D-55D2-47E9-8954-37711EC48020}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

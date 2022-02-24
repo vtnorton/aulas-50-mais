@@ -8,69 +8,70 @@ namespace BancoRoxinho.Dominio
     {
         static void Main(string[] args)
         {
-            string opcao = "S";
-            int escolhaDoUsuario;
-
-            while (opcao.Equals("S"))
+            // do while
+            // faça enquanto
+            bool continuarNoPrograma = true;
+            do
             {
-                Console.Clear();
                 Console.WriteLine("Bem vindo ao banco Roxinho");
                 Console.WriteLine("Escolha um número para prosseguir:");
                 Console.WriteLine("1 - Cadastrar pessoa física");
-                Console.WriteLine("2 - Ler pessoas físicas cadastradas");
+                Console.WriteLine("2 - Ler pessoas físicas cadastrada");
                 Console.WriteLine("3 - Cadastrar pessoas juridicas ");
                 Console.WriteLine("4 - Ler pessoas juridicas cadastradas ");
+                Console.WriteLine("0 - Sair");
 
-                escolhaDoUsuario = int.Parse(Console.ReadLine());
-                if (escolhaDoUsuario == 1)
+
+
+                int escolhaDoUsuario = int.Parse(Console.ReadLine());
+                // switch case
+                // mudar  caso
+
+                switch (escolhaDoUsuario)
                 {
-                    EscolheuAOpcaoCadastrarPessoa();
+                    case 1:
+                        EscolheuAOpcaoCadastrarPessoa();
+                        break;
+                    case 2:
+                        EscolheuAOpcaoDeVerPessoasFisicas();
+                        break;
+                    case 3:
+                        EscolheuAOpcaoCadastrarPessoaJuridica();
+                        break;
+                    case 4:
+                        EscolheuAOpcaoDeVerPessoasJuridicas();
+                        break;
+                    case 0:
+                    default: //padrão
+                        continuarNoPrograma = false;
+                        break;
                 }
 
-                if (escolhaDoUsuario == 2)
-                {
-                    EscolheuAOpcaoDeVerPessoasFisicas();
-                }
-                if (escolhaDoUsuario == 3)
-                {
-                    EscolheuAOpcaoCadastrarPessoaJuridica();
-                }
-
-                if (escolhaDoUsuario == 4)
-                {
-                    EscolheuAOpcaoDeVerPessoasJuridicas();
-                }
-                Console.WriteLine("Deseja realizar outra operação (S/N)");
-                opcao = Console.ReadLine();
-
-            }
-
-            //Console.Read();
+            } while (continuarNoPrograma);
         }
+
 
        
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
             var listaPessoas = PessoasRepository.PessoasFisicas;
-
-            // Explicar melhor na próxima aula
-            for (int contador = 0; contador < listaPessoas.Count; contador++)
+            listaPessoas.ForEach(pessoa =>
             {
-                // Explicar melhor na próxima aula
-                var pessoa = listaPessoas[contador];
                 Console.WriteLine("");
-                Console.WriteLine("Pessoa de Nº " + contador);
-                Console.WriteLine("Nome da pessoa: " + pessoa.Nome);
+                // Mostrar na aula de arrays/listas
+                Console.WriteLine("Pessoa de Nº ");
+                Console.WriteLine("Nome da pessoa: " + pessoa.NomeCompleto);
                 Console.WriteLine("Idade da pessoa: " + pessoa.Idade);
-                Console.WriteLine("Conta da pessoa: " + pessoa.CPF);
+                Console.WriteLine("Conta da pessoa: " + pessoa.ContaCorrente.NumeroDaConta);
                 Console.WriteLine("");
-            }
+            });
         }
 
         static void EscolheuAOpcaoCadastrarPessoa()
         {
             var pessoa = new PessoaFisica();
             var pessoaCadastrada = pessoa.CadastrarPessoa();
+            pessoaCadastrada.ContaCorrente.Saldo = 200;
 
             PessoasRepository.PessoasFisicas.Add(pessoaCadastrada);
         }
