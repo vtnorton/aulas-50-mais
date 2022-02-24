@@ -6,9 +6,7 @@ namespace BancoRoxinho.Dominio
 {
     internal class Program
     {
-        internal class Program
-        {
-            static void Main(string[] args)
+                  static void Main(string[] args)
             {
                 bool continuarNoPrograma = true;
                 do
@@ -65,7 +63,7 @@ namespace BancoRoxinho.Dominio
                 listaPessoas.ForEach(pessoa =>
                 {
                     Console.WriteLine("");
-                    Console.WriteLine("Pessoa de Nº ");
+                    Console.WriteLine("Pessoa de Nº "); 
                     Console.WriteLine("Nome da pessoa: " + pessoa.Nome);
                     Console.WriteLine("Idade da pessoa: " + pessoa.Idade);
                     Console.WriteLine("Conta da pessoa: " + pessoa.ContaCorrente.NumeroDaConta);
@@ -78,12 +76,12 @@ namespace BancoRoxinho.Dominio
                 var pessoaJuridica = new PessoaJuridica();
                 var pessoaJuridicaCadastrada = pessoaJuridica.CadastrarPessoaJuridica();
 
-                PessoasRepository.PessoasJuridicas.Add(pessoaJuridicaCadastrada);
+                PessoasRepository.PessoaJuridicas.Add(pessoaJuridicaCadastrada);
             }
 
             static void EscolheuAOpcaoDeVerPessoasJuridica()
             {
-                var listaPessoaJuridica = PessoasRepository.PessoasJuridicas;
+                var listaPessoaJuridica = PessoasRepository.PessoaJuridicas;
                 var Juridica = new PessoaJuridica();
 
                 listaPessoaJuridica.ForEach(Juridica =>
@@ -96,3 +94,4 @@ namespace BancoRoxinho.Dominio
             }
         }
     }
+

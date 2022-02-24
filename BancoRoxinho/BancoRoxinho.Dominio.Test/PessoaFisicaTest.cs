@@ -26,7 +26,7 @@ namespace BancoRoxinho.Dominio.Test
         public void DeveValidarIdadeDaPessoaQuandoForMenorDeIdade()
         {
             // definir o que vai ser testado
-            int idade = 10;
+            int idade = 12;
             bool resultadoEsperado = false;
             var pessoa = new PessoaFisica();
 
