@@ -9,4 +9,8 @@
     <PackageReference Include="CPFCNPJ" Version="2.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BancoRoxinho\BancoRoxinho.csproj" />
+  </ItemGroup>
+
 </Project>

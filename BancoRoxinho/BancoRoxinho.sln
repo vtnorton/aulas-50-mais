@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoRoxinho", "BancoRoxinho\BancoRoxinho.csproj", "{003C786B-F933-4E89-B0A3-62B6A3EF0DE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancoRoxinho.Dominio", "BancoRoxinho.Dominio\BancoRoxinho.Dominio.csproj", "{0E359CE0-97B8-4BF5-9304-48D07138487F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BancoRoxinho.Dominio", "BancoRoxinho.Dominio\BancoRoxinho.Dominio.csproj", "{0E359CE0-97B8-4BF5-9304-48D07138487F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
