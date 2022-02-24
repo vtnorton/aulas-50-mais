@@ -33,17 +33,6 @@ namespace BancoRoxinho.Dominio
                     break;                  
             }
 
-
-           // if(escolhaDoUsuario == 1)
-           // {
-            //    EscolheuAOpcaoCadastrarPessoa();
-           // }
-
-           // if(escolhaDoUsuario == 2)
-           // {
-           //     EscolheuAOpcaoDeVerPessoasFisicas();
-           // }
-
             Console.Read();
         }
 
