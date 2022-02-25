@@ -8,7 +8,6 @@ namespace BancoRoxinho.Dominio.Model
 
         public int Idade { get; set; }
         public string CPF { get; set; }
-
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
 
@@ -16,8 +15,6 @@ namespace BancoRoxinho.Dominio.Model
         {
             get
             {
-                //VitorNorton
-                //Vitor Norton
                 return Nome + " " + Sobrenome;
             }
         }
@@ -44,22 +41,17 @@ namespace BancoRoxinho.Dominio.Model
             return cpfValido;
         }
 
-        public bool VerificarMaioridade(int idade)
-        {
-            return MaiorIdade;
-        }
-
         public PessoaFisica CadastrarPessoa()
         {
             var pessoa = new PessoaFisica();
 
             Console.WriteLine("Digite o nome da pessoa: ");
-            string nomeRecebido = Console.ReadLine();
-            pessoa.Nome = nomeRecebido;
+            Nome = Console.ReadLine();
+            pessoa.Nome = Nome;
 
             Console.WriteLine("Digite o sobrenome da pessoa: ");
-            string sobrenomeRecebido = Console.ReadLine();
-            pessoa.Sobrenome = sobrenomeRecebido;
+            Sobrenome = Console.ReadLine();
+            pessoa.Sobrenome = Sobrenome;
 
             Console.WriteLine("Digite o CPF de " + pessoa.NomeCompleto + ":");
             pessoa.CPF = Console.ReadLine();
