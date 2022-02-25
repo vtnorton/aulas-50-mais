@@ -1,10 +1,11 @@
-﻿using System;
-using CPFCNPJ;
+﻿using CPFCNPJ;
 
 namespace BancoRoxinho.Dominio.Model
 {
     public class PessoaFisica : Pessoa
     {
+        public static readonly int IdadeMinima = 18;
+
         public int Idade { get; set; }
         public string CPF { get; set; }
 
@@ -23,7 +24,7 @@ namespace BancoRoxinho.Dominio.Model
         public bool MaiorIdade {
             get
             {
-                if (Idade >= 18)
+                if (Idade >= IdadeMinima)
                 {
                     return true;
                 }

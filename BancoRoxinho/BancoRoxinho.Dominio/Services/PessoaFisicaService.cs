@@ -15,13 +15,14 @@ namespace BancoRoxinho.Dominio.Services
             )
         {
             PessoaFisica pessoa = new PessoaFisica();
+
             List<PessoaFisica> listaDePessoas;
             listaDePessoas = PessoasRepository.PessoasFisicas;
 
             pessoa.Nome = nome;
             pessoa.Idade = idade;
             pessoa.CPF = cpf;
-            pessoa.Endereco = endereco;
+            pessoa.Endereco = endereco; 
 
             if (pessoa.MaiorIdade && pessoa.VerificarCPF(pessoa.CPF))
             {
@@ -62,7 +63,7 @@ namespace BancoRoxinho.Dominio.Services
                     if (!string.IsNullOrWhiteSpace(endereco) && !string.IsNullOrEmpty(endereco))
                         pessoa.Endereco = endereco;
 
-                    if (idade >= 18)
+                    if (idade >= PessoaFisica.IdadeMinima)
                         pessoa.Idade = idade;
                 }
             }
