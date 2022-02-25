@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 ﻿using System;
 using CPFCNPJ;
+=======
+﻿using CPFCNPJ;
+>>>>>>> a0ae49a8e7eb863540cc24ea553552ebb6e6fae2
 
 namespace BancoRoxinho.Dominio.Model
 {
     public class PessoaFisica : Pessoa
     {
+<<<<<<< HEAD
 
         public int Idade { get; set; }
         public string CPF { get; set; }
@@ -39,10 +44,42 @@ namespace BancoRoxinho.Dominio.Model
             var verificador = new Main();
             var cpfValido = verificador.IsValidCPFCNPJ(cpfASerValdido);
             return cpfValido;
+=======
+        public static readonly int IdadeMinima = 18;
+
+        public int Idade { get; set; }
+        public string CPF { get; set; }
+
+        public string Nome { private get; set; }
+        public string Sobrenome { private get; set; }
+
+        public string NomeCompleto { 
+            get
+            {
+                //VitorNorton
+                //Vitor Norton
+                return Nome + " " + Sobrenome;
+            }
+>>>>>>> a0ae49a8e7eb863540cc24ea553552ebb6e6fae2
         }
 
-        public PessoaFisica CadastrarPessoa()
+        public bool MaiorIdade {
+            get
+            {
+                if (Idade >= IdadeMinima)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool VerificarCPF(string cpfASerValdido)
         {
+<<<<<<< HEAD
             var pessoa = new PessoaFisica();
 
             Console.WriteLine("Digite o nome da pessoa: ");
@@ -75,6 +112,16 @@ namespace BancoRoxinho.Dominio.Model
             Console.Clear();
 
             return pessoa;
+=======
+            var verificador = new Main();
+            var cpfValido = verificador.IsValidCPFCNPJ(cpfASerValdido);
+            return cpfValido;
+        }
+
+        public bool VerificarMaioridade(int idade)
+        {
+            return MaiorIdade;
+>>>>>>> a0ae49a8e7eb863540cc24ea553552ebb6e6fae2
         }
     }
 }

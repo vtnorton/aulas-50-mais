@@ -3,7 +3,11 @@ using CPFCNPJ;
 
 namespace BancoRoxinho.Dominio.Model
 {
+<<<<<<< HEAD
     //PessoaJuritica herdando Pessoa
+=======
+    // Pessoa Juridica herda Pessoa
+>>>>>>> a0ae49a8e7eb863540cc24ea553552ebb6e6fae2
     public class PessoaJuridica : Pessoa
     {
         public string CNPJ = "00.000.000/0000-00";
