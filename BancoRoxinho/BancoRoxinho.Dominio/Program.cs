@@ -1,6 +1,4 @@
-﻿using BancoRoxinho.Dominio.Dados;
-using BancoRoxinho.Dominio.Model;
-using System;
+﻿using System;
 
 namespace BancoRoxinho.Dominio
 {
@@ -16,9 +14,12 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("Bem vindo ao banco Roxinho");
                 Console.WriteLine("Escolha um número para prosseguir:");
                 Console.WriteLine("1 - Cadastrar pessoa física");
-                Console.WriteLine("2 - Ler pessoas físicas cadastrada");
-                Console.WriteLine("3 - Cadastrar pessoas juridicas ");
-                Console.WriteLine("4 - Ler pessoas juridicas cadastradas ");
+                Console.WriteLine("2 - Ler pessoas físicas cadastradas");
+                Console.WriteLine("3 - Editar uma pessoa física");
+                Console.WriteLine("4 - Deletar uma pessoa física");
+                Console.WriteLine("5 - Cadastrar pessoas juridicas ");
+                Console.WriteLine("6 - Ler pessoas juridicas cadastradas ");
+
                 Console.WriteLine("0 - Sair");
 
 
@@ -36,11 +37,18 @@ namespace BancoRoxinho.Dominio
                         EscolheuAOpcaoDeVerPessoasFisicas();
                         break;
                     case 3:
-                        EscolheuAOpcaoCadastrarPessoaJuridica();
+                        EscolheuAOpcaoEditarUmaPessoaFisica();
                         break;
                     case 4:
+                        EscolheuAOpcaoDeExcluirPessoaFisica();
+                        break;
+                    case 5:
+                        EscolheuAOpcaoCadastrarPessoaJuridica();
+                        break;
+                    case 6:
                         EscolheuAOpcaoDeVerPessoasJuridicas();
                         break;
+
                     case 0:
                     default: //padrão
                         continuarNoPrograma = false;
@@ -54,6 +62,17 @@ namespace BancoRoxinho.Dominio
        
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
+            
+        }
+
+        static void EscolheuAOpcaoCadastrarPessoa()
+        {
+            
+        }
+
+        static void EscolheuAOpcaoEditarUmaPessoaFisica()
+        {
+
             var listaPessoas = PessoasRepository.PessoasFisicas;
             listaPessoas.ForEach(pessoa =>
             {
@@ -67,13 +86,9 @@ namespace BancoRoxinho.Dominio
             });
         }
 
-        static void EscolheuAOpcaoCadastrarPessoa()
+        static void EscolheuAOpcaoDeExcluirPessoaFisica()
         {
-            var pessoa = new PessoaFisica();
-            var pessoaCadastrada = pessoa.CadastrarPessoa();
-            pessoaCadastrada.ContaCorrente.Saldo = 200;
 
-            PessoasRepository.PessoasFisicas.Add(pessoaCadastrada);
         }
         private static void EscolheuAOpcaoDeVerPessoasJuridicas()
         {
