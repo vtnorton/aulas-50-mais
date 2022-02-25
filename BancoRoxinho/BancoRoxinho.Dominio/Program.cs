@@ -1,6 +1,4 @@
-﻿using BancoRoxinho.Dominio.Dados;
-using BancoRoxinho.Dominio.Model;
-using System;
+﻿using System;
 
 namespace BancoRoxinho.Dominio
 {
@@ -17,6 +15,8 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("Escolha um número para prosseguir:");
                 Console.WriteLine("1 - Cadastrar pessoa física");
                 Console.WriteLine("2 - Ler pessoas físicas cadastradas");
+                Console.WriteLine("3 - Editar uma pessoa física");
+                Console.WriteLine("4 - Deletar uma pessoa física");
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -32,6 +32,12 @@ namespace BancoRoxinho.Dominio
                     case 2:
                         EscolheuAOpcaoDeVerPessoasFisicas();
                         break;
+                    case 3:
+                        EscolheuAOpcaoEditarUmaPessoaFisica();
+                        break;
+                    case 4:
+                        EscolheuAOpcaoDeExcluirPessoaFisica();
+                        break;
                     case 0:
                     default: //padrão
                         continuarNoPrograma = false;
@@ -43,34 +49,22 @@ namespace BancoRoxinho.Dominio
 
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
-            var listaPessoas = PessoasRepository.PessoasFisicas;
-
-            /* 
-                foreach (var pessoa in listaPessoas)
-                {
-
-                }
-            */
-
-            listaPessoas.ForEach(pessoa =>
-            {
-                Console.WriteLine("");
-                // Mostrar na aula de arrays/listas
-                Console.WriteLine("Pessoa de Nº ");
-                Console.WriteLine("Nome da pessoa: " + pessoa.NomeCompleto);
-                Console.WriteLine("Idade da pessoa: " + pessoa.Idade);
-                Console.WriteLine("Conta da pessoa: " + pessoa.ContaCorrente.NumeroDaConta);
-                Console.WriteLine("");
-            });
+            
         }
 
         static void EscolheuAOpcaoCadastrarPessoa()
         {
-            var pessoa = new PessoaFisica();
-            var pessoaCadastrada = pessoa.CadastrarPessoa();
-            pessoaCadastrada.ContaCorrente.Saldo = 200;
+            
+        }
 
-            PessoasRepository.PessoasFisicas.Add(pessoaCadastrada);
+        static void EscolheuAOpcaoEditarUmaPessoaFisica()
+        {
+
+        }
+
+        static void EscolheuAOpcaoDeExcluirPessoaFisica()
+        {
+
         }
     }
 }
