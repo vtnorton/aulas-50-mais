@@ -1,66 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;//fluentAssertion
-//fakeiteasy
-//BUGUS
 using BancoRoxinho.Dominio.Model;
-
+using Xunit; //FluentAssertion 
+             //FakeItEasy 
+             //BUGUS
 
 namespace BancoRoxinho.Dominio.Test
 {
-    
     public class PessoaFisicaTest
     {
         [Fact]
         public void DeveValidarIdadeDaPessoaQuandoForMaiorDeDezoito()
         {
-            //definir o que vai ser testado
+            // definir o que vai ser testado
             int idade = 26;
             bool resultadoEsperado = true;
             var pessoa = new PessoaFisica();
-            //executar o programa
-            var resultado = pessoa.VerificarMaioridade(idade);
 
+            pessoa.Nome = "Vitor";
+            pessoa.Sobrenome = "Norton";
+            pessoa.Idade = 26;
 
+            // executar o programa
+            bool resultado = pessoa.VerificarMaioridade(pessoa);
 
-            //validar o teste
+            // validar o teste
             Assert.True(resultado == resultadoEsperado);
-            
         }
+
         [Fact]
-        public void DeveValidarIdadeDaPessoaQuandoForMenorDeDezoito()
+        public void DeveValidarIdadeDaPessoaQuandoForMenorDeIdade()
         {
-            //definir o que vai ser testado
-            int idade = 10;
+            // definir o que vai ser testado
             bool resultadoEsperado = false;
             var pessoa = new PessoaFisica();
-            //executar o programa
-            var resultado = pessoa.VerificarMaioridade(idade);
 
+            pessoa.Nome = "Vitor";
+            pessoa.Sobrenome = "Norton";
+            pessoa.Idade = 10;
 
+            // executar o programa
+            bool resultado = pessoa.VerificarMaioridade(pessoa);
 
-            //validar o teste
+            // validar o teste
             Assert.True(resultado == resultadoEsperado);
-
         }
+
         [Fact]
-        public void DeveValidarIdadeDaPessoaQuandoForIgualDezoito()
+        public void DeveValidarIdadeDaPessoaQuandoDezoitoAnos()
         {
-            //definir o que vai ser testado
-            int idade = 18;
+            // definir o que vai ser testado
             bool resultadoEsperado = true;
             var pessoa = new PessoaFisica();
-            //executar o programa
-            var resultado = pessoa.VerificarMaioridade(idade);
 
+            pessoa.Nome = "Vitor";
+            pessoa.Sobrenome = "Norton";
+            pessoa.Idade = 18;
 
+            // executar o programa
+            bool resultado = pessoa.VerificarMaioridade(pessoa);
 
-            //validar o teste
+            // validar o teste
             Assert.True(resultado == resultadoEsperado);
-
         }
     }
 }
