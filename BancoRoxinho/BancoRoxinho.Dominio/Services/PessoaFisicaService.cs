@@ -9,6 +9,7 @@ namespace BancoRoxinho.Dominio.Services
     {
         public void Adicionar(
             string nome,
+            string sobrenome,
             int idade,
             string cpf,
             string endereco = ""
@@ -20,6 +21,7 @@ namespace BancoRoxinho.Dominio.Services
             listaDePessoas = PessoasRepository.PessoasFisicas;
 
             pessoa.Nome = nome;
+            pessoa.Sobrenome = sobrenome;
             pessoa.Idade = idade;
             pessoa.CPF = cpf;
             pessoa.Endereco = endereco; 
@@ -49,6 +51,7 @@ namespace BancoRoxinho.Dominio.Services
         public void Editar(
             string cpf,
             string nome = "",
+            string sobrenome = "",
             int idade = 0,
             string endereco = "")
         {
@@ -65,6 +68,9 @@ namespace BancoRoxinho.Dominio.Services
 
                     if (idade >= PessoaFisica.IdadeMinima)
                         pessoa.Idade = idade;
+
+                    if (!string.IsNullOrWhiteSpace(sobrenome) && !string.IsNullOrEmpty(sobrenome))
+                        pessoa.Sobrenome = sobrenome;
                 }
             }
 

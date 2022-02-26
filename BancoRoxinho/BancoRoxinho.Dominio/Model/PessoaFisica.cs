@@ -9,8 +9,8 @@ namespace BancoRoxinho.Dominio.Model
         public int Idade { get; set; }
         public string CPF { get; set; }
 
-        public string Nome { private get; set; }
-        public string Sobrenome { private get; set; }
+        public string Nome { get; set; }
+        public string Sobrenome { get; set; }
 
         public string NomeCompleto { 
             get
