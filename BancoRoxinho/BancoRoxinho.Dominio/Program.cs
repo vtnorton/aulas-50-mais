@@ -1,9 +1,15 @@
-﻿using System;
+﻿using BancoRoxinho.Dominio.Dados;
+using BancoRoxinho.Dominio.Model;
+using BancoRoxinho.Dominio.Services;
+using System;
+using System.Collections.Generic;
 
 namespace BancoRoxinho.Dominio
 {
     internal class Program
     {
+        private static PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
+
         static void Main(string[] args)
         {
             // do while
@@ -49,22 +55,84 @@ namespace BancoRoxinho.Dominio
 
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("==== EXIBINDO PESSOAS FÍSICAS CADASTRADAS ====");
+            List<PessoaFisica> listaDePessoas = PessoasRepository.PessoasFisicas;
             
+            foreach(PessoaFisica pessoa in listaDePessoas)
+            {
+                Console.WriteLine("\n" + pessoa.NomeCompleto);
+                Console.WriteLine("Nº da Conta: " + pessoa.ContaCorrente.NumeroDaConta);
+                if (!string.IsNullOrEmpty(pessoa.Endereco))
+                {
+                    Console.WriteLine("Endereço: " + pessoa.Endereco);
+                }
+                Console.WriteLine("Idade: " + pessoa.Idade);
+            }
+
+            Console.ResetColor();
         }
 
         static void EscolheuAOpcaoCadastrarPessoa()
         {
+            PessoaFisica pessoa = new PessoaFisica();
             
+            Console.WriteLine("Digite o nome da pessoa: ");
+            pessoa.Nome = Console.ReadLine();
+        
+            Console.WriteLine("Digite o seu sobrenome: ");
+            pessoa.Sobrenome = Console.ReadLine();
+
+            Console.WriteLine("Digite o seu CPF: ");
+            pessoa.CPF = Console.ReadLine();
+
+            Console.WriteLine("Digite a sua idade: ");
+            pessoa.Idade = int.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o seu endereço: ");
+            pessoa.Endereco = Console.ReadLine();
+
+
+            pessoaFisicaService.Adicionar(pessoa.Nome, pessoa.Sobrenome, pessoa.Idade, pessoa.CPF, pessoa.Endereco);
+
         }
 
         static void EscolheuAOpcaoEditarUmaPessoaFisica()
         {
+            
+            Console.WriteLine("Digite o seu CPF: ");
+            string cpf = Console.ReadLine();
 
+            var pessoaEditada = pessoaFisicaService.ObterPessoa(cpf);
+
+            Console.WriteLine("Pressione ENTER para pular uma etapa.");
+            Console.WriteLine("Digite o nome da pessoa: (Nome atual: " + pessoaEditada.Nome + ")");
+            pessoaEditada.Nome = Console.ReadLine();
+        
+            Console.WriteLine("Digite o seu sobrenome: (Sobrenome atual: " + pessoaEditada.Sobrenome + ")");
+            pessoaEditada.Sobrenome = Console.ReadLine();
+
+            Console.WriteLine("Digite a sua idade:  (Idade atual: " + pessoaEditada.Idade + ")");
+            pessoaEditada.Idade = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Digite o seu endereço:  (Endereço atual: " + pessoaEditada.Endereco + ")");
+            pessoaEditada.Endereco = Console.ReadLine();
+
+            pessoaFisicaService.Editar(
+                pessoaEditada.CPF, 
+                pessoaEditada.Nome, 
+                pessoaEditada.Sobrenome, 
+                pessoaEditada.Idade, 
+                pessoaEditada.Endereco);
         }
 
         static void EscolheuAOpcaoDeExcluirPessoaFisica()
         {
+            Console.WriteLine("Digite o cpf da pessoa a ser excluida: ");
+            string cpf = Console.ReadLine();
 
+            pessoaFisicaService.Excluir(cpf); 
         }
+        
     }
 }
