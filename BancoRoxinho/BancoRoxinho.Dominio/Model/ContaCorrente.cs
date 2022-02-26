@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-﻿using System.Collections.Generic;
-using BancoRoxinho.Dominio.Dados;
-=======
 ﻿using BancoRoxinho.Dominio.Dados;
 using System.Collections.Generic;
->>>>>>> a0ae49a8e7eb863540cc24ea553552ebb6e6fae2
 
 namespace BancoRoxinho.Dominio.Model
 {
-    // public, private, package, internal
-<<<<<<< HEAD
-    // public, private, package, internal
-=======
->>>>>>> a0ae49a8e7eb863540cc24ea553552ebb6e6fae2
+
     public class ContaCorrente
     {
         public int NumeroDaConta;

@@ -1,20 +1,16 @@
-<<<<<<< HEAD
-﻿using System;
+using System;
 using CPFCNPJ;
-=======
-﻿using CPFCNPJ;
->>>>>>> a0ae49a8e7eb863540cc24ea553552ebb6e6fae2
 
 namespace BancoRoxinho.Dominio.Model
 {
     public class PessoaFisica : Pessoa
     {
-<<<<<<< HEAD
-
         public int Idade { get; set; }
         public string CPF { get; set; }
-        public string Nome { get; set; }
-        public string Sobrenome { get; set; }
+        public string Nome {  get; set; }
+        public string Sobrenome {  get; set; }
+
+        public static readonly int IdadeMinima = 18;
 
         public string NomeCompleto
         {
@@ -39,56 +35,29 @@ namespace BancoRoxinho.Dominio.Model
             }
         }
 
-        bool VerificarCPF(string cpfASerValdido)
+        public bool VerificarCPF(string cpfASerValdido)
         {
             var verificador = new Main();
             var cpfValido = verificador.IsValidCPFCNPJ(cpfASerValdido);
             return cpfValido;
-=======
-        public static readonly int IdadeMinima = 18;
-
-        public int Idade { get; set; }
-        public string CPF { get; set; }
-
-        public string Nome { private get; set; }
-        public string Sobrenome { private get; set; }
-
-        public string NomeCompleto { 
-            get
-            {
-                //VitorNorton
-                //Vitor Norton
-                return Nome + " " + Sobrenome;
-            }
->>>>>>> a0ae49a8e7eb863540cc24ea553552ebb6e6fae2
         }
 
-        public bool MaiorIdade {
-            get
-            {
-                if (Idade >= IdadeMinima)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        public bool VerificarCPF(string cpfASerValdido)
+        public bool VerificarMaioridade(int idade)
         {
-<<<<<<< HEAD
+            return MaiorIdade;
+        }
+
+        public PessoaFisica CadastrarPessoa()
+        {
             var pessoa = new PessoaFisica();
 
             Console.WriteLine("Digite o nome da pessoa: ");
-            Nome = Console.ReadLine();
-            pessoa.Nome = Nome;
+            string nomeRecebido = Console.ReadLine();
+            pessoa.Nome = nomeRecebido;
 
             Console.WriteLine("Digite o sobrenome da pessoa: ");
-            Sobrenome = Console.ReadLine();
-            pessoa.Sobrenome = Sobrenome;
+            string sobrenomeRecebido = Console.ReadLine();
+            pessoa.Sobrenome = sobrenomeRecebido;
 
             Console.WriteLine("Digite o CPF de " + pessoa.NomeCompleto + ":");
             pessoa.CPF = Console.ReadLine();
@@ -112,16 +81,6 @@ namespace BancoRoxinho.Dominio.Model
             Console.Clear();
 
             return pessoa;
-=======
-            var verificador = new Main();
-            var cpfValido = verificador.IsValidCPFCNPJ(cpfASerValdido);
-            return cpfValido;
-        }
-
-        public bool VerificarMaioridade(int idade)
-        {
-            return MaiorIdade;
->>>>>>> a0ae49a8e7eb863540cc24ea553552ebb6e6fae2
         }
     }
 }
