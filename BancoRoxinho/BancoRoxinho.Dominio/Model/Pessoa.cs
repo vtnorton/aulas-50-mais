@@ -3,10 +3,11 @@
     public class Pessoa
     {
         public string Endereco;
-        public ContaCorrente ContaCorrente = new ContaCorrente();
+        public ContaCorrente ContaCorrente;
+
         public Pessoa()
         {
-
+            ContaCorrente = new ContaCorrente();
         }
     }
 }
