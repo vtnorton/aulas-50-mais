@@ -12,6 +12,7 @@ namespace BancoRoxinho.Dominio
 
         static void Main(string[] args)
         {
+
             // do while
             // faça enquanto
             bool continuarNoPrograma = true;
@@ -34,6 +35,8 @@ namespace BancoRoxinho.Dominio
                 // switch case
                 // mudar  caso
 
+
+
                 switch (escolhaDoUsuario)
                 {
                     case 1:
@@ -43,6 +46,7 @@ namespace BancoRoxinho.Dominio
                         EscolheuAOpcaoDeVerPessoasFisicas();
                         break;
                     case 3:
+
                         EscolheuAOpcaoEditarUmaPessoaFisica();
                         break;
                     case 4:
@@ -56,18 +60,22 @@ namespace BancoRoxinho.Dominio
                         break;
 
                     case 0:
+
                     default: //padrão
                         continuarNoPrograma = false;
                         break;
                 }
 
             } while (continuarNoPrograma);
+
+
         }
 
 
        
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
+
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("==== EXIBINDO PESSOAS FÍSICAS CADASTRADAS ====");
@@ -85,6 +93,7 @@ namespace BancoRoxinho.Dominio
             }
 
             Console.ResetColor();
+
         }
 
         static void EscolheuAOpcaoCadastrarPessoa()
