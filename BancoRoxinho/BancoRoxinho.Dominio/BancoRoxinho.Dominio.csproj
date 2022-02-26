@@ -9,4 +9,8 @@
     <PackageReference Include="CPFCNPJ" Version="2.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BancoRoxinho.Dominio.Services\" />
+  </ItemGroup>
+
 </Project>
