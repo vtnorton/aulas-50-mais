@@ -8,21 +8,17 @@ namespace BancoRoxinho.Dominio
     {
         static void Main(string[] args)
         {
+            MenuIniciar();
+
             bool continuarNoPrograma = true;
 
+            string escolha = (Console.ReadLine()).ToUpper();
 
-            Console.WriteLine("Bem vindo ao banco Roxinho");
-            Console.WriteLine("Escolha um número para prosseguir:");
-            Console.WriteLine("F - Cadastrar pessoa física");
-            Console.WriteLine("J - Cadastrar pessoa Jurídica");
-
-
-            string escolha = Console.ReadLine();
             do
-            {
+            {                 
                 if (escolha == "F")
                 {
-                    Console.WriteLine("Pessoa Fisica:");
+                    Console.WriteLine("====== Pessoa Fisica =======");
                     Console.WriteLine("1 - Cadastrar pessoa física");
                     Console.WriteLine("2 - Ler pessoas físicas cadastrada");
                     Console.WriteLine("3 - Editar pessoa física");
@@ -31,30 +27,39 @@ namespace BancoRoxinho.Dominio
 
 
                     int escolhaDoUsuario = int.Parse(Console.ReadLine());
+
                     switch (escolhaDoUsuario)
+
                     {
                         case 1:
                             EscolheuAOpcaoCadastrarPessoa();
+                            Console.Clear();
+                            MenuIniciar();
                             break;
 
                         case 2:
                             EscolheuAOpcaoDeVerPessoasFisicas();
                             break;
+
                         case 3:
                             EscolheuAOpcaoEditarUmaPessoaFisica();
                             break;
+
                         case 4:
                             EscolheuAOpcaoDeExcluirPessoaFisica();
                             break;
+
                         case 0:
+
                         default:
                             continuarNoPrograma = false;
                             break;
                     }
                 }
-                else
+
+                if (escolha == "J")
                 {
-                    Console.WriteLine("Pessoa Juridica:");
+                    Console.WriteLine("====== Pessoa Juridica ======");
                     Console.WriteLine("1 - Cadastrar pessoa Juridica");
                     Console.WriteLine("2 - Ler pessoa Juridica");
                     Console.WriteLine("3 - Editar pessoa Juridica");
@@ -76,7 +81,6 @@ namespace BancoRoxinho.Dominio
 
                         case 3:
 
-
                             break;
 
                         case 4:
@@ -89,13 +93,10 @@ namespace BancoRoxinho.Dominio
                             break;
                     }
                 }
-            } while (continuarNoPrograma);
+            
+                } while (continuarNoPrograma);
 
-
-
-
-
-
+            }
 
                 static void EscolheuAOpcaoEditarUmaPessoaFisica()
                 {
@@ -152,9 +153,17 @@ namespace BancoRoxinho.Dominio
                     });
                 }
 
+            static void MenuIniciar()
+            {
+            Console.WriteLine("\n");
+                Console.WriteLine("****** Bem vindo ao banco Roxinho ******");
+                Console.WriteLine("Escolha uma opção para prosseguir:");
+                Console.WriteLine("F - Cadastrar pessoa física");
+                Console.WriteLine("J - Cadastrar pessoa Jurídica");
+            }
                    
         }
     }
-}
+
 
 
