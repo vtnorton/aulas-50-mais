@@ -7,8 +7,8 @@ namespace BancoRoxinho.Dominio.Model
     {
         public int Idade { get; set; }
         public string CPF { get; set; }
-        public string Nome {  get; set; }
-        public string Sobrenome {  get; set; }
+        public string Nome { get; set; }
+        public string Sobrenome { get; set; }
 
         public static readonly int IdadeMinima = 18;
 
