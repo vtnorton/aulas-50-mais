@@ -36,8 +36,8 @@ namespace BancoRoxinho.Dominio.Model
 
         public bool VerificarCPF(string cpfASerValdido)
         {
-            var verificador = new Main();
-            var cpfValido = verificador.IsValidCPFCNPJ(cpfASerValdido);
+            var verificador = new Main();//nome dado pelo criador do pacote
+            var cpfValido = verificador.IsValidCPFCNPJ(cpfASerValdido); //o dev criou esse metodo dentro do objeto
             return cpfValido;
         }
 
