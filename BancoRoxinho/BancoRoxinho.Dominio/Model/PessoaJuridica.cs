@@ -11,6 +11,8 @@ namespace BancoRoxinho.Dominio.Model
         //
         public string Nome { get; set; }
 
+        public string NomeFantasia { get; set; }
+
 
         public bool VerificarCNPJ(string cnpjASerValidado)
         {
