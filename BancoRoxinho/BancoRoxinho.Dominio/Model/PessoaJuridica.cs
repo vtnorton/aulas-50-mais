@@ -8,31 +8,31 @@ namespace BancoRoxinho.Dominio.Model
     public class PessoaJuridica : Pessoa
     {
         public string CNPJ = "00.000.000/0000-00";
-        public string Nome;
+        public string RazaoSocial ;
 
         public bool VerificarCPF(string cnpjASerValdido)
         {
-            var verificador = new Main();//nome dado pelo criador do pacote
-            var cnpjValido = verificador.IsValidCPFCNPJ(cnpjASerValdido); //o dev criou esse metodo dentro do objeto
+            var verificador = new Main();
+            var cnpjValido = verificador.IsValidCPFCNPJ(cnpjASerValdido); 
             return cnpjValido;
         }
-        public PessoaJuridica CadastrarPessoa()
+        public PessoaJuridica CadastrarPessoaJuridica()
         {
 
-            var pessoa = new PessoaJuridica();
+            var pessoaJuridica = new PessoaJuridica();
             Console.WriteLine("Digite a Razão Social da empresa");
-            pessoa.Nome = Console.ReadLine();
+            pessoaJuridica.RazaoSocial = Console.ReadLine();
 
-            Console.WriteLine("Digite o CNPJ de " + pessoa.Nome + ";");
-            pessoa.CNPJ = Console.ReadLine();
+            Console.WriteLine("Digite o CNPJ de " + pessoaJuridica.RazaoSocial + ";");
+            pessoaJuridica.CNPJ = Console.ReadLine();
 
-            if (!VerificarCPF(pessoa.CNPJ))
+            if (!VerificarCPF(pessoaJuridica.CNPJ))
             {
                 Console.WriteLine("CNPJ inválido!");
                 return null;
             }
 
-            return pessoa;
+            return pessoaJuridica;
         }
     }
 }

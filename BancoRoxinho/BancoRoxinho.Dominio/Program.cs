@@ -23,6 +23,8 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("2 - Ler pessoas físicas cadastradas");
                 Console.WriteLine("3 - Editar uma pessoa física");
                 Console.WriteLine("4 - Deletar uma pessoa física");
+                Console.WriteLine("5 - Cadastrar pessoa jurídica");
+                Console.WriteLine("6 - Ler pessoas juridicas cadastradas");
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -44,6 +46,13 @@ namespace BancoRoxinho.Dominio
                     case 4:
                         EscolheuAOpcaoDeExcluirPessoaFisica();
                         break;
+                    case 5:
+                        EscolheuAOpcaoCadastrarPessoaJuridica();
+                        break;
+                    case 6:
+                        EscolheuAOpcaoDeVerPessoasJuridica();
+                        break;
+
                     case 0:
                     default: //padrão
                         continuarNoPrograma = false;
@@ -51,6 +60,20 @@ namespace BancoRoxinho.Dominio
                 }
 
             } while (continuarNoPrograma);
+        }
+
+        private static void EscolheuAOpcaoDeVerPessoasJuridica()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void EscolheuAOpcaoCadastrarPessoaJuridica()
+        {
+            var pessoaJuridica = new PessoaJuridica();
+            var pessoaJuridicaCadastrada = pessoaJuridica.CadastrarPessoaJuridica();
+
+            PessoasRepository.PessoaJuridicas.Add(pessoaJuridicaCadastrada);
+
         }
 
         static void EscolheuAOpcaoDeVerPessoasFisicas()
@@ -133,6 +156,8 @@ namespace BancoRoxinho.Dominio
 
             pessoaFisicaService.Excluir(cpf); 
         }
-        
+
+
+
     }
 }
