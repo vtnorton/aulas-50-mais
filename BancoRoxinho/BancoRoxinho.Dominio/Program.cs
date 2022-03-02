@@ -22,9 +22,11 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("1 - Cadastrar pessoa física");
                 Console.WriteLine("2 - Ler pessoas físicas cadastradas");
                 Console.WriteLine("3 - Editar uma pessoa física");
-                Console.WriteLine("4 - Deletar uma pessoa física");
+                Console.WriteLine("4 - Excluir uma pessoa física");
                 Console.WriteLine("5 - Cadastrar pessoa jurídica");
-                Console.WriteLine("6 - Ler pessoas Juridicas cadastradas");
+                Console.WriteLine("6 - Ler pessoas juridica cadastrada");
+                Console.WriteLine("7 - Editar pessoa juridica cadastrada");
+                Console.WriteLine("8 - Excluir pessoa juridica cadastrada");
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -52,14 +54,57 @@ namespace BancoRoxinho.Dominio
                     case 6:
                         EscolheuOpcaoVerPessoasJuridicas();
                         break;
+                    case 7:
+                        EscolheuOpcaoEditarPessoaJuridica();
+                        break;
+                    case 8:
+                        EscolheuOpcaoExcluirPessoaJuridica();
+                        break;                        
                     case 0:
                     default: //padrão
                         continuarNoPrograma = false;
                         break;
                 }
-
             } while (continuarNoPrograma);
         }
+
+
+        static void EscolheuOpcaoExcluirPessoaJuridica()
+        {
+            Console.WriteLine("Digite os números do CNPJ da empresa a ser excluida: ");
+            string cnpj = Console.ReadLine();
+
+            PessoaJuridica.Excluir(cnpj);
+        }
+
+
+        static void EscolheuOpcaoEditarPessoaJuridica()
+        {
+            Console.WriteLine("Digite apenas os números do CNPJ desejado: ");
+            string cnpj = Console.ReadLine();
+
+            var pessoaJuridicaEditada = PessoaJuridica.ObterPessoaJuridica(cnpj);
+
+            Console.WriteLine("Pressione ENTER para pular uma etapa.");
+
+            Console.WriteLine("Digite o nome da razão social: (Nome atual: " + pessoaJuridicaEditada.RazaoSocial + ")");
+            pessoaJuridicaEditada.Nome = Console.ReadLine();
+
+
+            Console.WriteLine("Digite apenas os números do CNP a ser editado: (Nome atual: " + pessoaJuridicaEditada.cnpj + ")");
+            pessoaJuridicaEditada.cnpj = Console.ReadLine();
+                       
+
+            Console.WriteLine("Digite o seu endereço:  (Endereço atual: " + pessoaJuridicaEditada.Endereco + ")");
+            pessoaJuridicaEditada.Endereco = Console.ReadLine();
+
+            pessoaFisicaService.Editar(
+                pessoaJuridicaEditada.cnpj,
+                pessoaJuridicaEditada.RazaoSocial,
+                pessoaJuridicaEditada.Endereco);
+        }
+
+
 
         private static void EscolheuOpcaoVerPessoasJuridicas()
         {
@@ -90,6 +135,8 @@ namespace BancoRoxinho.Dominio
             PessoasRepository.PessoaJuridicas.Add(pessoaJuridicaCadastrada);
             Console.WriteLine();
         }
+
+
 
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
