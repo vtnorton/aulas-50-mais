@@ -21,6 +21,7 @@ namespace BancoRoxinho.Dominio.Services
             listaDePessoas = PessoasRepository.PessoasFisicas;
 
             pessoa.Nome = nome;
+            pessoa.Sobrenome = sobrenome;
             pessoa.Idade = idade;
             pessoa.CPF = cpf;
             pessoa.Endereco = endereco; 
