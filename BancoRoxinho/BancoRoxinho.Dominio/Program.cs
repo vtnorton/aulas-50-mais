@@ -23,6 +23,8 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("2 - Ler pessoas físicas cadastradas");
                 Console.WriteLine("3 - Editar uma pessoa física");
                 Console.WriteLine("4 - Deletar uma pessoa física");
+                Console.WriteLine("5 - Cadastrar pessoa jurídica");
+                Console.WriteLine("6 - Ler pessoas Juridicas cadastradas");
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -44,6 +46,12 @@ namespace BancoRoxinho.Dominio
                     case 4:
                         EscolheuAOpcaoDeExcluirPessoaFisica();
                         break;
+                    case 5:
+                        EscolheuAOpcaoCadastrarPessoaJuridica();
+                        break;
+                    case 6:
+                        EscolheuOpcaoVerPessoasJuridicas();
+                        break;
                     case 0:
                     default: //padrão
                         continuarNoPrograma = false;
@@ -51,6 +59,36 @@ namespace BancoRoxinho.Dominio
                 }
 
             } while (continuarNoPrograma);
+        }
+
+        private static void EscolheuOpcaoVerPessoasJuridicas()
+        {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("==== EXIBINDO PESSOAS JURÍDICAS CADASTRADAS ====");
+            List<PessoaJuridica> listaDePessoasJuridicas = PessoasRepository.PessoaJuridicas;
+
+            foreach (PessoaJuridica pessoaJuridica in listaDePessoasJuridicas)
+            {
+                Console.WriteLine("\n" + pessoaJuridica.RazaoSocial);
+                Console.WriteLine("Nº da Conta: " + pessoaJuridica.ContaCorrente.NumeroDaConta);
+                if (!string.IsNullOrEmpty(pessoaJuridica.Endereco))
+                {
+                    Console.WriteLine("Endereço: " + pessoaJuridica.Endereco);
+                }
+                Console.WriteLine("CNPJ nº: " + pessoaJuridica.CNPJ);
+                Console.WriteLine();
+            }
+            Console.ResetColor();
+        }
+
+        private static void EscolheuAOpcaoCadastrarPessoaJuridica()
+        {
+            var pessoaJuridica = new PessoaJuridica();
+            var pessoaJuridicaCadastrada = pessoaJuridica.CadastrarPessoaJuridica();
+
+            PessoasRepository.PessoaJuridicas.Add(pessoaJuridicaCadastrada);
+            Console.WriteLine();
         }
 
         static void EscolheuAOpcaoDeVerPessoasFisicas()
@@ -94,12 +132,10 @@ namespace BancoRoxinho.Dominio
 
 
             pessoaFisicaService.Adicionar(pessoa.Nome, pessoa.Sobrenome, pessoa.Idade, pessoa.CPF, pessoa.Endereco);
-
         }
 
         static void EscolheuAOpcaoEditarUmaPessoaFisica()
         {
-            
             Console.WriteLine("Digite o seu CPF: ");
             string cpf = Console.ReadLine();
 
