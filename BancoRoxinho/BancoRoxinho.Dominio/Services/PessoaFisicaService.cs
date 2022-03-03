@@ -3,9 +3,9 @@ using BancoRoxinho.Dominio.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BancoRoxinho.Dominio.Services
+namespace BancoRoxinho.Dominio.Service
 {
-    public class PessoaFisicaService
+    public class PessoaFisicaService  
     {
         public void Adicionar(
             string nome,
