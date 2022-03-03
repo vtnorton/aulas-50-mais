@@ -7,8 +7,11 @@ namespace BancoRoxinho.Dominio.Service
 {
     public class PessoaJuridicaService 
     {
-        public void Adicionar(string razaosocial, string cnpj, string endereco = "")
-
+        public void Adicionar(
+            string razaosocial,
+            string cnpj,
+            string endereco = ""
+            )
         {
             PessoaJuridica pessoaJuridica = new PessoaJuridica();
 
