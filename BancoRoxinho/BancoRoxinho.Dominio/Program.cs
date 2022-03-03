@@ -1,14 +1,16 @@
 ﻿using BancoRoxinho.Dominio.Dados;
 using BancoRoxinho.Dominio.Model;
-using BancoRoxinho.Dominio.Services;
+using BancoRoxinho.Dominio.Service;
 using System;
 using System.Collections.Generic;
+
 
 namespace BancoRoxinho.Dominio
 {
     internal class Program
     {
         private static PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
+        private static PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
 
         static void Main(string[] args)
         {
@@ -22,7 +24,11 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("1 - Cadastrar pessoa física");
                 Console.WriteLine("2 - Ler pessoas físicas cadastradas");
                 Console.WriteLine("3 - Editar uma pessoa física");
-                Console.WriteLine("4 - Deletar uma pessoa física");
+                Console.WriteLine("4 - Excluir uma pessoa física");
+                Console.WriteLine("5 - Cadastrar pessoa jurídica");
+                Console.WriteLine("6 - Ler pessoas juridica cadastrada");
+                Console.WriteLine("7 - Editar pessoa juridica cadastrada");
+                Console.WriteLine("8 - Excluir pessoa juridica cadastrada");
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -33,7 +39,7 @@ namespace BancoRoxinho.Dominio
                 switch (escolhaDoUsuario)
                 {
                     case 1:
-                        EscolheuAOpcaoCadastrarPessoa();
+                        EscolheuAOpcaoCadastrarPessoaFisica();
                         break;
                     case 2:
                         EscolheuAOpcaoDeVerPessoasFisicas();
@@ -44,13 +50,96 @@ namespace BancoRoxinho.Dominio
                     case 4:
                         EscolheuAOpcaoDeExcluirPessoaFisica();
                         break;
+                    case 5:
+                        EscolheuOpcaoCadastrarPessoaJuridica();
+                        break;
+                    case 6:
+                        EscolheuOpcaoVerPessoasJuridica(); 
+                        break;
+                    case 7:
+                        EscolheuOpcaoEditarPessoaJuridica();
+                        break;
+                    case 8:
+                        EscolheuOpcaoExcluirPessoaJuridica();
+                        break;                        
                     case 0:
                     default: //padrão
                         continuarNoPrograma = false;
                         break;
                 }
-
             } while (continuarNoPrograma);
+        }
+
+        static void EscolheuOpcaoCadastrarPessoaJuridica()
+        {
+            PessoaJuridica pessoaJuridica = new PessoaJuridica();
+
+            Console.WriteLine("Digite a Razão Social da Empresa: ");
+            pessoaJuridica.RazaoSocial = Console.ReadLine();
+
+            Console.WriteLine("Digite apenas os números do CNPJ da Empresa: ");
+            pessoaJuridica.CNPJ = Console.ReadLine();
+
+            Console.WriteLine("Digite o endereço da Empresa: ");
+            pessoaJuridica.Endereco = Console.ReadLine();
+
+            pessoaJuridicaService.Adicionar(pessoaJuridica.RazaoSocial, pessoaJuridica.CNPJ, pessoaJuridica.Endereco); 
+
+        }
+        
+        static void EscolheuOpcaoVerPessoasJuridica()
+        {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("==== EXIBINDO PESSOAS JURÍDICAS CADASTRADAS ====");
+            List<PessoaJuridica> listaDePessoasJuridicas = PessoasRepository.PessoaJuridicas;
+
+            foreach (PessoaJuridica pessoaJuridica in listaDePessoasJuridicas)
+            {
+                Console.WriteLine("\n" + pessoaJuridica.RazaoSocial);
+                Console.WriteLine("Nº da Conta: " + pessoaJuridica.ContaCorrente.NumeroDaConta);
+                if (!string.IsNullOrEmpty(pessoaJuridica.Endereco))
+                {
+                    Console.WriteLine("Endereço: " + pessoaJuridica.Endereco);
+                }
+                Console.WriteLine("CNPJ nº: " + pessoaJuridica.CNPJ);
+            }
+            Console.ResetColor();
+        }
+
+        static void EscolheuOpcaoEditarPessoaJuridica()
+        {
+            Console.WriteLine("Digite apenas os números do CNPJ desejado: ");
+            string cnpj = Console.ReadLine();
+
+            var pessoaJuridicaEditada = pessoaJuridicaService.ObterPessoaJuridica(cnpj);
+
+            Console.WriteLine("Pressione ENTER para pular uma etapa.");
+
+            Console.WriteLine("Digite o nome da razão social: (Nome atual: " + pessoaJuridicaEditada.RazaoSocial + ")");
+            pessoaJuridicaEditada.RazaoSocial = Console.ReadLine();
+
+
+            Console.WriteLine("Digite apenas os números do CNPJ a ser editado: (Nome atual: " + pessoaJuridicaEditada.CNPJ + ")");
+            pessoaJuridicaEditada.CNPJ = Console.ReadLine();
+
+
+            Console.WriteLine("Digite o seu endereço:  (Endereço atual: " + pessoaJuridicaEditada.Endereco + ")");
+            pessoaJuridicaEditada.Endereco = Console.ReadLine();
+
+            pessoaJuridicaService.Editar(
+                pessoaJuridicaEditada.CNPJ,
+                pessoaJuridicaEditada.RazaoSocial,
+                pessoaJuridicaEditada.Endereco);
+        }
+
+        static void EscolheuOpcaoExcluirPessoaJuridica()
+        {
+            Console.WriteLine("Digite apenas os números do CNPJ da empresa a ser excluida: ");
+            string cnpj = Console.ReadLine();
+
+            pessoaJuridicaService.Excluir(cnpj);
+
         }
 
         static void EscolheuAOpcaoDeVerPessoasFisicas()
@@ -70,11 +159,10 @@ namespace BancoRoxinho.Dominio
                 }
                 Console.WriteLine("Idade: " + pessoa.Idade);
             }
-
             Console.ResetColor();
         }
 
-        static void EscolheuAOpcaoCadastrarPessoa()
+        static void EscolheuAOpcaoCadastrarPessoaFisica()  
         {
             PessoaFisica pessoa = new PessoaFisica();
             
@@ -92,14 +180,11 @@ namespace BancoRoxinho.Dominio
             Console.WriteLine("Digite o seu endereço: ");
             pessoa.Endereco = Console.ReadLine();
 
-
             pessoaFisicaService.Adicionar(pessoa.Nome, pessoa.Sobrenome, pessoa.Idade, pessoa.CPF, pessoa.Endereco);
-
         }
 
         static void EscolheuAOpcaoEditarUmaPessoaFisica()
         {
-            
             Console.WriteLine("Digite o seu CPF: ");
             string cpf = Console.ReadLine();
 
@@ -133,6 +218,5 @@ namespace BancoRoxinho.Dominio
 
             pessoaFisicaService.Excluir(cpf); 
         }
-        
     }
 }

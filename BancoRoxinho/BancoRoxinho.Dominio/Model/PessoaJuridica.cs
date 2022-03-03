@@ -1,13 +1,22 @@
-﻿using System;
+﻿using CPFCNPJ;
+using System;
 
 namespace BancoRoxinho.Dominio.Model
 {
-    // Pessoa Juridica herda Pessoa
     public class PessoaJuridica : Pessoa
     {
-        public PessoaJuridica CadastrarPessoa()
+
+        public string CNPJ { get; set; }
+
+        public string RazaoSocial { get; set; }
+
+
+        public bool VerificarCNPJ(string cnpjASerValidado)
         {
-            throw new NotImplementedException();
+            var verificador = new Main();
+            var cnpjValido = verificador.IsValidCPFCNPJ(cnpjASerValidado);
+            return cnpjValido;
         }
     }
 }
+ 
