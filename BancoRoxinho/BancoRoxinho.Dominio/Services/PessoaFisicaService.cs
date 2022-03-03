@@ -2,6 +2,7 @@
 using BancoRoxinho.Dominio.Model;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace BancoRoxinho.Dominio.Services
 {
@@ -45,7 +46,9 @@ namespace BancoRoxinho.Dominio.Services
             var listaFiltrada = listaDePessoas.Where(item => item.CPF == cpf);
             pessoaEncontrada = listaFiltrada.First();
 
-            return pessoaEncontrada;
+            Console.WriteLine(listaDePessoas);
+            return pessoaEncontrada;                  
+               
         }
 
         public void Editar(
@@ -55,8 +58,10 @@ namespace BancoRoxinho.Dominio.Services
             int idade = 0,
             string endereco = "")
         {
+            List<PessoaFisica> listaDePessoas;
+            listaDePessoas = PessoasRepository.PessoasFisicas;
 
-            foreach(var pessoa in PessoasRepository.PessoasFisicas)
+            foreach (var pessoa in PessoasRepository.PessoasFisicas)
             {
                 if(pessoa.CPF == cpf)
                 {
@@ -72,9 +77,9 @@ namespace BancoRoxinho.Dominio.Services
                     if (!string.IsNullOrWhiteSpace(sobrenome) && !string.IsNullOrEmpty(sobrenome))
                         pessoa.Sobrenome = sobrenome;
                 }
-            }
 
-            // FINALIZAR A EDIÇÃO DE PESSOAS
+            listaDePessoas.Add(pessoa);
+            }                        
         }
 
         public void Excluir(string cpf)
