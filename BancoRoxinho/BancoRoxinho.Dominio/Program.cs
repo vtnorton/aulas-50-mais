@@ -131,6 +131,8 @@ namespace BancoRoxinho.Dominio
                 pessoaEditada.Endereco);
         }
 
+
+
         static void EscolheuAOpcaoDeExcluirPessoaFisica()
         {
             Console.WriteLine("Digite o cpf da pessoa a ser excluida: ");
@@ -152,13 +154,16 @@ namespace BancoRoxinho.Dominio
             Console.WriteLine("Digite a razão social da empresa: ");
             pessoa.RazaoSocialPJ = Console.ReadLine();
 
+            Console.WriteLine("Digite a idade do responsável jurídico: ");
+            pessoa.IdadePJ = int.Parse(Console.ReadLine());            
+
             Console.WriteLine("Digite o CNPJ da empresa: ");
             pessoa.CNPJ = Console.ReadLine();
             
             Console.WriteLine("Digite o seu endereço da empresa: ");
             pessoa.EnderecoPJ = Console.ReadLine();
 
-            pessoaJuridicaService.Adicionar(pessoa.NomePJ, pessoa.SobrenomePJ, pessoa.RazaoSocialPJ, pessoa.CNPJ, pessoa.EnderecoPJ);
+            pessoaJuridicaService.Adicionar(pessoa.NomePJ, pessoa.SobrenomePJ, pessoa.RazaoSocialPJ, pessoa.IdadePJ,  pessoa.EnderecoPJ);
 
         }
 
