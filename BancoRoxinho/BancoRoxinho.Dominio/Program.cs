@@ -23,6 +23,7 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("2 - Ler pessoas físicas cadastradas");
                 Console.WriteLine("3 - Editar uma pessoa física");
                 Console.WriteLine("4 - Deletar uma pessoa física");
+                Console.WriteLine("5 - Visualizar uma pessoa física");
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -44,6 +45,9 @@ namespace BancoRoxinho.Dominio
                     case 4:
                         EscolheuAOpcaoDeExcluirPessoaFisica();
                         break;
+                    case 5:
+                        EscolheuAOpcaoDeVisualizarPessoaFisica();
+                        break;
                     case 0:
                     default: //padrão
                         continuarNoPrograma = false;
@@ -58,7 +62,7 @@ namespace BancoRoxinho.Dominio
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("==== EXIBINDO PESSOAS FÍSICAS CADASTRADAS ====");
-            List<PessoaFisica> listaDePessoas = PessoasRepository.PessoasFisicas;
+            List<PessoaFisica> listaDePessoas = pessoaFisicaService.ObterLista();
             
             foreach(PessoaFisica pessoa in listaDePessoas)
             {
@@ -128,11 +132,22 @@ namespace BancoRoxinho.Dominio
 
         static void EscolheuAOpcaoDeExcluirPessoaFisica()
         {
-            Console.WriteLine("Digite o cpf da pessoa a ser excluida: ");
+            Console.WriteLine("Digite o CPF da pessoa a ser excluida: ");
             string cpf = Console.ReadLine();
 
             pessoaFisicaService.Excluir(cpf); 
         }
         
+        static void EscolheuAOpcaoDeVisualizarPessoaFisica()
+        {
+            Console.WriteLine("Digite o CPF da pessoa que quer visualizar: ");
+            string cpf = Console.ReadLine();
+
+            var pessoa = pessoaFisicaService.ObterPessoa(cpf);
+
+            Console.WriteLine(pessoa.NomeCompleto);
+            Console.WriteLine(pessoa.Idade);
+            Console.WriteLine(pessoa.Endereco);
+        }
     }
 }
