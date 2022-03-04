@@ -7,18 +7,16 @@ namespace BancoRoxinho.Dominio.Services
 {
     public class PessoaFisicaService
     {
+        private PessoasRepository _pessoasRepository = new PessoasRepository();
+
         public void Adicionar(
             string nome,
             string sobrenome,
             int idade,
             string cpf,
-            string endereco = ""
-            )
+            string endereco = "")
         {
             PessoaFisica pessoa = new PessoaFisica();
-
-            List<PessoaFisica> listaDePessoas;
-            listaDePessoas = PessoasRepository.PessoasFisicas;
 
             pessoa.Nome = nome;
             pessoa.Sobrenome = sobrenome;
@@ -28,24 +26,20 @@ namespace BancoRoxinho.Dominio.Services
 
             if (pessoa.MaiorIdade && pessoa.VerificarCPF(pessoa.CPF))
             {
-                listaDePessoas.Add(pessoa);
+                PessoasRepository.PessoasFisicas.Add(pessoa);
             }
         }
 
         public List<PessoaFisica> ObterLista()
         {
-            return PessoasRepository.PessoasFisicas;
+            var resultado = _pessoasRepository.ObterPessoasFisicas();
+            return resultado;
         }
 
         public PessoaFisica ObterPessoa(string cpf)
         {
-            PessoaFisica pessoaEncontrada;
-            List<PessoaFisica> listaDePessoas = PessoasRepository.PessoasFisicas;
-                                                            // Lambda Expressions  
-            var listaFiltrada = listaDePessoas.Where(item => item.CPF == cpf);
-            pessoaEncontrada = listaFiltrada.First();
-
-            return pessoaEncontrada;
+            var pessoa = _pessoasRepository.ObterPessoaFisica(cpf);
+            return pessoa;
         }
 
         public void Editar(
