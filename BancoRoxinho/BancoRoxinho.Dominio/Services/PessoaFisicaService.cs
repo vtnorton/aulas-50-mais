@@ -7,8 +7,8 @@ namespace BancoRoxinho.Dominio.Services
 {
     public class PessoaFisicaService
     {
-        private PessoasRepository _pessoasRepository = new PessoasRepository();
-
+        private ApplicationDBContext _context = new ApplicationDBContext();
+        
         public void Adicionar(
             string nome,
             string sobrenome,
@@ -26,20 +26,23 @@ namespace BancoRoxinho.Dominio.Services
 
             if (pessoa.MaiorIdade && pessoa.VerificarCPF(pessoa.CPF))
             {
-                PessoasRepository.PessoasFisicas.Add(pessoa);
+                _context.PessoasFisicas.Add(pessoa);
+                _context.ContasCorrentes.Add(pessoa.ContaCorrente);
+                _context.SaveChanges();
             }
+
         }
 
         public List<PessoaFisica> ObterLista()
         {
-            var resultado = _pessoasRepository.ObterPessoasFisicas();
+            var resultado = _context.PessoasFisicas.ToList();
             return resultado;
         }
 
         public PessoaFisica ObterPessoa(string cpf)
         {
-            var pessoa = _pessoasRepository.ObterPessoaFisica(cpf);
-            return pessoa;
+            var pessoa = _context.PessoasFisicas.Where(item => item.CPF == cpf).ToList();
+            return pessoa.First();
         }
 
         public void Editar(
@@ -74,7 +77,8 @@ namespace BancoRoxinho.Dominio.Services
         public void Excluir(string cpf)
         {
             var pessoa = ObterPessoa(cpf);
-            PessoasRepository.PessoasFisicas.Remove(pessoa);
+            _context.PessoasFisicas.Remove(pessoa);
+            _context.SaveChanges();
         }
     }
 }

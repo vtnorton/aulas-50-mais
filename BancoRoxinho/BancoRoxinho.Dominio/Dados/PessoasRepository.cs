@@ -4,6 +4,10 @@ using System.Data.SqlClient;
 
 namespace BancoRoxinho.Dominio.Dados
 {
+    /// <summary>
+    /// NÃO ESTÁ SENDO UTILIZADO, 
+    /// ESTÁ AQUI DE REFERÊNCIA PARA ESTUDOS
+    /// </summary>
     public class PessoasRepository
     {
         public readonly static string CONNECTIONSTRING = "Server=localhost\\SQLEXPRESS; Database=Aulas50Vitor;Integrated Security=SSPI";
@@ -37,6 +41,11 @@ namespace BancoRoxinho.Dominio.Dados
             return lista;
         }
 
+        /// <summary>
+        /// Este método irá retornar a pessoa física com base no CPF.
+        /// </summary>
+        /// <param name="cpf">CPF da pessoa que você quer buscar.</param>
+        /// <returns>Retona o tipo PessoaFisica</returns>
         public PessoaFisica ObterPessoaFisica(string cpf)
         {
             var pessoa = new PessoaFisica();

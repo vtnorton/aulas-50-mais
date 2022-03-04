@@ -1,14 +1,20 @@
 ﻿using BancoRoxinho.Dominio.Dados;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BancoRoxinho.Dominio.Model
 {
     // public, private, package, internal
     public class ContaCorrente
     {
-        public int NumeroDaConta;
-        public float Saldo;
-        public List<Transacoes> Extrato = new List<Transacoes>();
+        [Key]
+        public int Id { get; set; }
+        public int NumeroDaConta { get; set; }
+        public float Saldo { get; set; }
+
+        [NotMapped]
+        public List<Transacoes> Extrato { get; set; }
 
         public ContaCorrente()
         {

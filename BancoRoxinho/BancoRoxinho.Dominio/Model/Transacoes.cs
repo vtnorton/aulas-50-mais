@@ -1,10 +1,14 @@
-﻿namespace BancoRoxinho.Dominio.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BancoRoxinho.Dominio.Model
 {
     public class Transacoes
     {
-        public float Valor;
-        public string Descricao;
-        public ContaCorrente ContaOrigem = new ContaCorrente();
-        public ContaCorrente ContaDestino = new ContaCorrente();
+        [Key]
+        public int Id { get; set; }
+        public float Valor { get; set; }
+        public string Descricao { get; set; }
+        public ContaCorrente ContaOrigem { get; set; }
+        public ContaCorrente ContaDestino { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
-
+                
                 // switch case
                 // mudar  caso
 
