@@ -1,4 +1,5 @@
-﻿using BancoRoxinho.Dominio.Dados;
+﻿
+using BancoRoxinho.Dominio.Dados;
 using BancoRoxinho.Dominio.Model;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,58 +8,52 @@ namespace BancoRoxinho.Dominio.Services
 {
     public class PessoaFisicaService
     {
+        private PessoasRepository _pessoasRepository = new PessoasRepository();
+
         public void Adicionar(
             string nome,
             string sobrenome,
             int idade,
             string cpf,
-            string endereco = ""
-            )
+            string endereco = "")
         {
             PessoaFisica pessoa = new PessoaFisica();
-
-            List<PessoaFisica> listaDePessoas;
-            listaDePessoas = PessoasRepository.PessoasFisicas;
 
             pessoa.Nome = nome;
             pessoa.Sobrenome = sobrenome;
             pessoa.Idade = idade;
             pessoa.CPF = cpf;
-            pessoa.Endereco = endereco; 
+            pessoa.Endereco = endereco;
 
             if (pessoa.MaiorIdade && pessoa.VerificarCPF(pessoa.CPF))
             {
-                listaDePessoas.Add(pessoa);
+                PessoasRepository.PessoasFisicas.Add(pessoa);
             }
         }
 
         public List<PessoaFisica> ObterLista()
         {
-            return PessoasRepository.PessoasFisicas;
+            var resultado = _pessoasRepository.ObterPessoasFisicas();
+            return resultado;
         }
 
         public PessoaFisica ObterPessoa(string cpf)
         {
-            PessoaFisica pessoaEncontrada;
-            List<PessoaFisica> listaDePessoas = PessoasRepository.PessoasFisicas;
-                                                            // Lambda Expressions  
-            var listaFiltrada = listaDePessoas.Where(item => item.CPF == cpf);
-            pessoaEncontrada = listaFiltrada.First();
-
-            return pessoaEncontrada;
+            var pessoa = _pessoasRepository.ObterPessoaFisica(cpf);
+            return pessoa;
         }
 
         public void Editar(
             string cpf,
             string nome = "",
-            string sobrenome ="",
+            string sobrenome = "",
             int idade = 0,
             string endereco = "")
         {
 
-            foreach(var pessoa in PessoasRepository.PessoasFisicas)
+            foreach (var pessoa in PessoasRepository.PessoasFisicas)
             {
-                if(pessoa.CPF == cpf)
+                if (pessoa.CPF == cpf)
                 {
                     if (!string.IsNullOrEmpty(nome) && !string.IsNullOrWhiteSpace(nome))
                         pessoa.Nome = nome;
@@ -68,6 +63,9 @@ namespace BancoRoxinho.Dominio.Services
 
                     if (idade >= PessoaFisica.IdadeMinima)
                         pessoa.Idade = idade;
+
+                    if (!string.IsNullOrWhiteSpace(sobrenome) && !string.IsNullOrEmpty(sobrenome))
+                        pessoa.Sobrenome = sobrenome;
                 }
             }
 
