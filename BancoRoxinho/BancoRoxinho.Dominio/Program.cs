@@ -81,7 +81,7 @@ namespace BancoRoxinho.Dominio
         static void EscolheuAOpcaoCadastrarPessoa()
         {
             PessoaFisica pessoa = new PessoaFisica();
-            
+
             Console.WriteLine("Digite o nome da pessoa: ");
             pessoa.Nome = Console.ReadLine();
         

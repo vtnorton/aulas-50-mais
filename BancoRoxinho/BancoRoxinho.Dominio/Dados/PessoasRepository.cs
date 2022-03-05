@@ -24,7 +24,6 @@ namespace BancoRoxinho.Dominio.Dados
 
             var sqlCommand = new SqlCommand("SELECT * FROM PessoaFisica;", conexaoBancoDeDados);
             var resultado = sqlCommand.ExecuteReader();
-
             while (resultado.Read())
             {
                 var pessoa = new PessoaFisica();
@@ -36,7 +35,6 @@ namespace BancoRoxinho.Dominio.Dados
 
                 lista.Add(pessoa);
             }
-
             conexaoBancoDeDados.Close();
             return lista;
         }

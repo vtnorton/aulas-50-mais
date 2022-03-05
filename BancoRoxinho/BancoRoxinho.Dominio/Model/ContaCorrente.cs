@@ -1,4 +1,5 @@
 ﻿using BancoRoxinho.Dominio.Dados;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,8 +19,8 @@ namespace BancoRoxinho.Dominio.Model
 
         public ContaCorrente()
         {
-            var listaDePessoas = PessoasRepository.PessoasFisicas;
-            int numero = listaDePessoas.Count + 1;
+            var sorteador = new Random();
+            int numero = sorteador.Next(0,9000);
             NumeroDaConta = numero;
         }
 

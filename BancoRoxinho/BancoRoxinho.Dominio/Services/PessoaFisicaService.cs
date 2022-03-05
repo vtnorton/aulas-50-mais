@@ -1,5 +1,6 @@
 ﻿using BancoRoxinho.Dominio.Dados;
 using BancoRoxinho.Dominio.Model;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,20 +23,20 @@ namespace BancoRoxinho.Dominio.Services
             pessoa.Sobrenome = sobrenome;
             pessoa.Idade = idade;
             pessoa.CPF = cpf;
-            pessoa.Endereco = endereco; 
+            pessoa.Endereco = endereco;
+            pessoa.ContaCorrente = new ContaCorrente();
 
             if (pessoa.MaiorIdade && pessoa.VerificarCPF(pessoa.CPF))
             {
                 _context.PessoasFisicas.Add(pessoa);
-                _context.ContasCorrentes.Add(pessoa.ContaCorrente);
                 _context.SaveChanges();
             }
-
         }
 
         public List<PessoaFisica> ObterLista()
         {
-            var resultado = _context.PessoasFisicas.ToList();
+            var resultado = _context.PessoasFisicas
+                .Include(item => item.ContaCorrente).ToList();
             return resultado;
         }
 

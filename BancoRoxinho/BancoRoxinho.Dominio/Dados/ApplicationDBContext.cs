@@ -12,7 +12,7 @@ namespace BancoRoxinho.Dominio.Dados
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer("Server=localhost\\SQLEXPRESS; Database=AulaComEntityFramework;Integrated Security=SSPI");
+            builder.UseSqlServer("Server=localhost\\SQLEXPRESS; Database=BaseDeDados03;Integrated Security=SSPI");
         }
     }
 }
