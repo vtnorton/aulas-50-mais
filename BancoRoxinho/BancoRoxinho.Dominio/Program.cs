@@ -12,8 +12,6 @@ namespace BancoRoxinho.Dominio
 
         static void Main(string[] args)
         {
-            // do while
-            // faça enquanto
             bool continuarNoPrograma = true;
             do
             {
@@ -28,9 +26,6 @@ namespace BancoRoxinho.Dominio
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
                 
-                // switch case
-                // mudar  caso
-
                 switch (escolhaDoUsuario)
                 {
                     case 1:
@@ -53,6 +48,13 @@ namespace BancoRoxinho.Dominio
                         continuarNoPrograma = false;
                         break;
                 }
+                Console.WriteLine("\nDigite OPÇÃO [ 1 ] para Continuar\nDigite OPÇÃO [ 0 ] para SAIR");
+                Console.WriteLine("Pressione ENTER");
+
+                int opcao = int.Parse(Console.ReadLine());
+
+                if (opcao == 1) continuarNoPrograma = true;
+                else continuarNoPrograma = false;
 
             } while (continuarNoPrograma);
         }
@@ -93,17 +95,15 @@ namespace BancoRoxinho.Dominio
 
             Console.WriteLine("Digite a sua idade: ");
             pessoa.Idade = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Digite o seu endereço: ");
             pessoa.Endereco = Console.ReadLine();
 
-
             pessoaFisicaService.Adicionar(pessoa.Nome, pessoa.Sobrenome, pessoa.Idade, pessoa.CPF, pessoa.Endereco);
-
         }
 
         static void EscolheuAOpcaoEditarUmaPessoaFisica()
         {
-            
             Console.WriteLine("Digite o seu CPF: ");
             string cpf = Console.ReadLine();
 

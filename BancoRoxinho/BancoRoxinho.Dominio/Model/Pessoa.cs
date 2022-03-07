@@ -7,7 +7,6 @@ namespace BancoRoxinho.Dominio.Model
     {
         [Key]
         public int Id { get; set; }
-
         public string Endereco { get; set; }
         public ContaCorrente ContaCorrente { get; set; }
     }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula HTML5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Formulário de contato</h1>
+        <p>Ir para: <a href="pagina2.html">clique aqui.</a></p>
+
+        <div class="row">
+            <div class="col-5">
+                <div class="imagem">
+                    <figure>
+                        <img class="img-fluid img-thumbnail" src="img/imagem.jpg"
+                            alt="Imagem mostrando um celular entrando em contato." />
+                        <figcaption>Legenda da minha imagem</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="formulario">
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">
+                                    Nome:
+                                    <input name="nome" type="text" class="form-control"
+                                        placeholder="Digite o seu nome" /> <br />
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="form-label">
+                                    E-mail:
+                                    <input name="email" type="email" class="form-control" value="vitor@vtnorton.com" />
+                                    <br />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">
+                                    Assunto:
+                                    <input name="assunto" class="form-control" type="text" /> <br />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="form-label">
+                                    Mensagem:
+                                    <textarea class="form-control" name="nome"></textarea><br />
+                                </label>
+
+                                <label style="font-size: 12px; color: grey">
+                                    <input name="termos" type="checkbox" checked />
+                                    Aceito as política de privacidade.
+                                </label><br />
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-success">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

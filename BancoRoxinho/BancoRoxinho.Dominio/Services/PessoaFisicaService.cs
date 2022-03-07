@@ -54,9 +54,9 @@ namespace BancoRoxinho.Dominio.Services
             string endereco = "")
         {
 
-            foreach(var pessoa in PessoasRepository.PessoasFisicas)
+            foreach(var pessoa in _context.PessoasFisicas)
             {
-                if(pessoa.CPF == cpf)
+                if (pessoa.CPF == cpf)
                 {
                     if (!string.IsNullOrEmpty(nome) && !string.IsNullOrWhiteSpace(nome))
                         pessoa.Nome = nome;
@@ -69,10 +69,10 @@ namespace BancoRoxinho.Dominio.Services
 
                     if (!string.IsNullOrWhiteSpace(sobrenome) && !string.IsNullOrEmpty(sobrenome))
                         pessoa.Sobrenome = sobrenome;
+
                 }
             }
-
-            // FINALIZAR A EDIÇÃO DE PESSOAS
+            _context.SaveChanges();
         }
 
         public void Excluir(string cpf)
