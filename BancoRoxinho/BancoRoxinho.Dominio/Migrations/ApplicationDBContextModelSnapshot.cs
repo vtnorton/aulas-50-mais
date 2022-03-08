@@ -84,6 +84,9 @@ namespace BancoRoxinho.Dominio.Migrations
                     b.Property<string>("CPNJ")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RazaoSocial")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("ContaCorrenteId")
                         .HasColumnType("int");
 
