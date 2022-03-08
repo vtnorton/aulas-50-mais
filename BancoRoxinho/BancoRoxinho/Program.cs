@@ -13,7 +13,6 @@ namespace BancoRoxinho
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Olá Mundo");
             CreateHostBuilder(args).Build().Run();
         }
 

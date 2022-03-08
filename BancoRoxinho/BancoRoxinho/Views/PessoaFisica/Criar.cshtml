@@ -1,0 +1,53 @@
+﻿@model PessoaFisica
+
+<h1>Cadastrar nova pessoa</h1>
+<hr />
+<form method="post" asp-action="Criar">
+    <div class="row">
+        <div class="col-3">
+            <label>
+                Nome:
+                <input class="form-control" type="text" asp-for="Nome" placeholder="Maria" />
+            </label>
+        </div>
+        <div class="col-3">
+            <label>
+                Sobrenome:
+                <input class="form-control" type="text" asp-for="Sobrenome" placeholder="Lopes" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <label>
+                CPF
+                <input class="form-control" type="text" asp-for="CPF" placeholder="000.000.000-00" />
+            </label>
+        </div>
+        <div class="col-2">
+            <label>
+                Idade
+                <input class="form-control" type="text" asp-for="Idade" placeholder="18" />
+            </label>
+        </div>
+        <div class="col">
+            <label>
+                Nome da mãe
+                <input class="form-control" type="text" asp-for="NomeDaMae" placeholder="Josafina" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>
+                Endereço
+                <textarea class="form-control" asp-for="Endereco"></textarea>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input class="btn btn-primary" type="submit" value="Cadastar pessoa" />
+        </div>
+    </div>
+</form>

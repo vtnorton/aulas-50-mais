@@ -1,3 +1,15 @@
 .form-label {
 	width: 100%;
 }
+
+h1{
+	color: yellow;
+}
+
+h1:hover{
+	color: red;
+}
+
+input:focus{
+	border-left: 5px solid red !important;
+}
