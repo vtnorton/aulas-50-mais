@@ -1,6 +1,20 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    Layout = "_Layout";
+    ViewData["Title"] = "Políticas de privacidade";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<h1>Políticas de privacidade</h1>
+<input name="Nome" />
+
+@{
+    for(int i = 0; i < 10; i++)
+    {
+        <h2>Sessão de número @i</h2>
+    }
+
+    PessoaFisica pessoa = new PessoaFisica();
+    pessoa.Nome = "Vitor";
+    pessoa.Sobrenome = "Norton";
+
+    ViewData["Usuario"] = pessoa;
+}

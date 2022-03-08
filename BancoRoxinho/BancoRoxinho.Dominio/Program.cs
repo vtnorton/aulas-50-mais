@@ -93,11 +93,12 @@ namespace BancoRoxinho.Dominio
 
             Console.WriteLine("Digite a sua idade: ");
             pessoa.Idade = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Digite o seu endereço: ");
             pessoa.Endereco = Console.ReadLine();
 
 
-            pessoaFisicaService.Adicionar(pessoa.Nome, pessoa.Sobrenome, pessoa.Idade, pessoa.CPF, pessoa.Endereco);
+            pessoaFisicaService.Adicionar(pessoa);
 
         }
 

@@ -8,8 +8,6 @@ namespace BancoRoxinho.Dominio.Model
     {
         public static readonly int IdadeMinima = 18;
 
-        [Key]
-        public int Id { get; set; }
         public int Idade { get; set; }
         public string NomeDaMae { get; set; }
 

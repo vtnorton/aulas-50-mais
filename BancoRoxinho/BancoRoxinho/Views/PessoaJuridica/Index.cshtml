@@ -1,0 +1,26 @@
+﻿@model List<PessoaJuridica>
+
+<h1>Lista de pessoas jurídicas cadastradas</h1>
+<hr />
+<a href="/PessoaJuridica/Criar">Adicionar nova pessoa jurídica</a>
+<div class="row">
+    @{
+        foreach(PessoaJuridica pessoa in Model)
+        {
+            <div class="col-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">@pessoa.NomeFantasia</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Nº da conta: @pessoa.ContaCorrente.NumeroDaConta</h6>
+                    @{
+                        if (!string.IsNullOrEmpty(pessoa.Endereco))
+                        {
+                            <p class="card-text"><strong>Endereço:</strong> @pessoa.Endereco</p>
+                        }
+                    }
+                  </div>
+                </div>
+            </div>
+        }
+    }
+</div>

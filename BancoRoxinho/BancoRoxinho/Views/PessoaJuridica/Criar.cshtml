@@ -1,0 +1,41 @@
+﻿@model PessoaJuridica
+
+<h1>Cadastrar nova pessoa jurídica</h1>
+<hr />
+<form method="post" asp-action="Criar">
+    <div class="row">
+        <div class="col-3">
+            <label>
+                Nome fantasia:
+                <input class="form-control" type="text" asp-for="NomeFantasia" placeholder="Nome" />
+            </label>
+        </div>
+        <div class="col-3">
+            <label>
+                Razao Social:
+                <input class="form-control" type="text" asp-for="RazaoSocial" placeholder="Razão Social" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <label>
+                CNPJ:
+                <input class="form-control" type="text" asp-for="CNPJ" placeholder="00.000.000/0000-00" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>
+                Endereço
+                <textarea class="form-control" asp-for="Endereco"></textarea>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input class="btn btn-primary" type="submit" value="Cadastar pessoa jurídica" />
+        </div>
+    </div>
+</form>

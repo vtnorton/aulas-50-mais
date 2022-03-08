@@ -10,7 +10,7 @@ namespace BancoRoxinho.Dominio.Dados
     /// </summary>
     public class PessoasRepository
     {
-        public readonly static string CONNECTIONSTRING = "Server=localhost\\SQLEXPRESS; Database=Aulas50Vitor;Integrated Security=SSPI";
+        public readonly static string CONNECTIONSTRING = "Server=localhost\\SQLEXPRESS; Database=Aulas50Local;Integrated Security=SSPI";
         public static List<PessoaFisica> PessoasFisicas = new List<PessoaFisica>();
         public static List<PessoaJuridica> PessoaJuridicas = new List<PessoaJuridica>();
 

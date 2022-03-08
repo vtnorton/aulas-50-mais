@@ -1,8 +1,20 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    string texto = "Página Incial";
+    Layout = "_Layout";
+    ViewData["Title"] = texto;
 }
-
-<div class="text-center">
-    <h1 >Boas vindas</h1>
-    <img src="/lion-66898_960_720.webp" />
- </div>
+<div class="row">
+    <div class="col">
+        <img src="/lion-66898_960_720.webp" />
+    </div>
+    <div class="col">
+        <h1>Boas vindas</h1>
+        <p>HTML + C# (Com limitações) == RAZOR == .cshtml</p>
+        <hr />
+        <a asp-controller="PessoaFisica" asp-action="Criar">Adicionar pessoa física</a> <br/>
+        <a href="/PessoaFisica/Index">Visualizar pessoa física</a>
+         <a asp-controller="PessoaJuridica" asp-action="Criar">Adicionar pessoa jurídica</a> <br/>
+        <a href="/PessoaFisica/Index">Visualizar pessoa jur[idica</a>
+    </div>
+</div>
+    

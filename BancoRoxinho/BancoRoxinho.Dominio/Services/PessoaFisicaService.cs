@@ -9,34 +9,27 @@ namespace BancoRoxinho.Dominio.Services
     public class PessoaFisicaService
     {
         private ApplicationDBContext _context = new ApplicationDBContext();
-        
-        public void Adicionar(
-            string nome,
-            string sobrenome,
-            int idade,
-            string cpf,
-            string endereco = "")
-        {
-            PessoaFisica pessoa = new PessoaFisica();
 
-            pessoa.Nome = nome;
-            pessoa.Sobrenome = sobrenome;
-            pessoa.Idade = idade;
-            pessoa.CPF = cpf;
-            pessoa.Endereco = endereco;
+        public void Adicionar(PessoaFisica pessoa)
+        {
             pessoa.ContaCorrente = new ContaCorrente();
 
             if (pessoa.MaiorIdade && pessoa.VerificarCPF(pessoa.CPF))
             {
-                _context.PessoasFisicas.Add(pessoa);
-                _context.SaveChanges();
+                if (!_context.PessoasFisicas.Where(item => item.CPF == pessoa.CPF).Any())
+                {
+                    _context.PessoasFisicas.Add(pessoa);
+                    _context.SaveChanges();
+                }
             }
         }
+
 
         public List<PessoaFisica> ObterLista()
         {
             var resultado = _context.PessoasFisicas
-                .Include(item => item.ContaCorrente).ToList();
+                .Include(item => item.ContaCorrente)
+                .OrderBy(item => (item.Nome + " " + item.Sobrenome)).ToList();
             return resultado;
         }
 
@@ -54,7 +47,7 @@ namespace BancoRoxinho.Dominio.Services
             string endereco = "")
         {
 
-            foreach(var pessoa in PessoasRepository.PessoasFisicas)
+            foreach(var pessoa in _context.PessoasFisicas)
             {
                 if(pessoa.CPF == cpf)
                 {
@@ -72,7 +65,6 @@ namespace BancoRoxinho.Dominio.Services
                 }
             }
 
-            // FINALIZAR A EDIÇÃO DE PESSOAS
         }
 
         public void Excluir(string cpf)
