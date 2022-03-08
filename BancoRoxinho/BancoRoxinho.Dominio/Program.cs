@@ -10,6 +10,8 @@ namespace BancoRoxinho.Dominio
     {
         private static PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
 
+        private static PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
+
         static void Main(string[] args)
         {
             // do while
@@ -24,6 +26,7 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("3 - Editar uma pessoa física");
                 Console.WriteLine("4 - Deletar uma pessoa física");
                 Console.WriteLine("5 - Visualizar uma pessoa física");
+                Console.WriteLine("6 - Cadastrar uma pessoa juridica");
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -48,6 +51,9 @@ namespace BancoRoxinho.Dominio
                     case 5:
                         EscolheuAOpcaoDeVisualizarPessoaFisica();
                         break;
+                    case 6:
+                        EscolheuAOpcaoDeCadastrarPessoaJuridica();
+                        break;
                     case 0:
                     default: //padrão
                         continuarNoPrograma = false;
@@ -57,6 +63,21 @@ namespace BancoRoxinho.Dominio
             } while (continuarNoPrograma);
         }
 
+        static void EscolheuAOpcaoDeCadastrarPessoaJuridica()
+        {
+            PessoaJuridica pessoa = new PessoaJuridica();
+            
+            Console.WriteLine("Digite o CNPJ: ");
+            pessoa.CPNJ = Console.ReadLine();
+            Console.WriteLine("Digite a razao social: ");
+            pessoa.RazaoSocial = Console.ReadLine();
+            Console.WriteLine("Digite o nome fantasia: ");
+            pessoa.NomeFantasia = Console.ReadLine();
+            Console.WriteLine("Digite o endereco: ");
+            pessoa.Endereco = Console.ReadLine();
+
+            pessoaJuridicaService.Cadastrar(pessoa);
+        }
         static void EscolheuAOpcaoDeVerPessoasFisicas()
         {
             Console.Clear();
