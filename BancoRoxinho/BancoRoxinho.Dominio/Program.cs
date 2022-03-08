@@ -1,4 +1,4 @@
-﻿using BancoRoxinho.Dominio.Dados;
+using BancoRoxinho.Dominio.Dados;
 using BancoRoxinho.Dominio.Model;
 using BancoRoxinho.Dominio.Services;
 using System;
@@ -97,8 +97,8 @@ namespace BancoRoxinho.Dominio
             Console.WriteLine("Digite o seu endereço: ");
             pessoa.Endereco = Console.ReadLine();
 
-
             pessoaFisicaService.Adicionar(pessoa);
+            // pessoaFisicaService.Adicionar(pessoa.Nome, pessoa.Sobrenome, pessoa.Idade, pessoa.CPF, pessoa.Endereco);
 
         }
 

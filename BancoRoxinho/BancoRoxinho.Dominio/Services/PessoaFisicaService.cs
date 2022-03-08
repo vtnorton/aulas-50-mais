@@ -30,6 +30,7 @@ namespace BancoRoxinho.Dominio.Services
             var resultado = _context.PessoasFisicas
                 .Include(item => item.ContaCorrente)
                 .OrderBy(item => (item.Nome + " " + item.Sobrenome)).ToList();
+          
             return resultado;
         }
 
