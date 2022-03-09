@@ -10,5 +10,10 @@ namespace BancoRoxinho.Dominio.Model
 
         public string Endereco { get; set; }
         public ContaCorrente ContaCorrente { get; set; }
+
+        public Pessoa()
+        {
+            ContaCorrente = new ContaCorrente();
+        }
     }
 }

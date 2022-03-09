@@ -11,9 +11,7 @@ namespace BancoRoxinho.Dominio.Services
         private ApplicationDBContext _context = new ApplicationDBContext();
         
         public void Adicionar(PessoaFisica pessoa)
-        {
-            pessoa.ContaCorrente = new ContaCorrente();
-
+        {            
             if (pessoa.MaiorIdade && pessoa.VerificarCPF(pessoa.CPF))
             {
                 if (!_context.PessoasFisicas.Where(item => item.CPF == pessoa.CPF).Any())
@@ -34,7 +32,9 @@ namespace BancoRoxinho.Dominio.Services
 
         public PessoaFisica ObterPessoa(string cpf)
         {
-            var pessoa = _context.PessoasFisicas.Where(item => item.CPF == cpf).ToList();
+            var pessoa = _context.PessoasFisicas
+                .Where(item => item.CPF == cpf)
+                .Include(item => item.ContaCorrente).ToList();
             return pessoa.First();
         }
 
