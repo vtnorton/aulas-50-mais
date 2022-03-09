@@ -1,0 +1,27 @@
+﻿@model List<PessoaFisica>
+
+<h1>Lista de pessoas cadastradas</h1>
+<hr />
+<a href="/PessoaFisica/Criar">Adicionar nova pessoa</a>
+<div class="row">
+    @{
+        foreach(PessoaFisica pessoa in Model)
+        {
+            <div class="col-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">@pessoa.NomeCompleto</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Nº da conta: @pessoa.ContaCorrente.NumeroDaConta</h6>
+                    @{
+                        if (!string.IsNullOrEmpty(pessoa.Endereco))
+                        {
+                            <p class="card-text"><strong>Endereço:</strong> @pessoa.Endereco</p>
+                        }
+                    }
+                    <a href="/PessoaFisica/@pessoa.CPF/Visualizar" class="btn btn-primary">Mais info</a>
+                  </div>
+                </div>
+            </div>
+        }
+    }
+</div>

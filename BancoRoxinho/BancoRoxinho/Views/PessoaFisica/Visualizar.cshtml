@@ -1,0 +1,28 @@
+﻿@model PessoaFisica
+
+<h1>@Model.NomeCompleto</h1>
+<hr />
+<small><a href="/PessoaFisica">Voltar</a></small>
+
+<div class="alert alert-primary" >
+    Saldo da Conta: @Model.ContaCorrente.Saldo
+</div>
+<p><strong>Nº da Conta:</strong> @Model.ContaCorrente.NumeroDaConta</p>
+<br />
+<p><strong>Endereço</strong>: @Model.Endereco</p>
+<p><strong>Idade</strong> @Model.Idade</p>
+<p><strong>Nome da Mãe:</strong>: @Model.NomeDaMae</p>
+
+<form method="post" asp-action="Deletar" asp-route-cpf="@Model.CPF">
+    <script>
+        function funcao1()
+            {
+            alert("Deseja EXCLUIR este Cadastro?");
+            }
+    </script>
+    <body>
+
+        <input type="submit" class="btn btn-danger" onclick="funcao1()" value="EXLUIR" />
+    </body>
+</form>
+    
