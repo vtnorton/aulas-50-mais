@@ -29,14 +29,14 @@ namespace BancoRoxinho.Controllers
         }
 
         [HttpPost]
-        public ActionResult Criar(PessoaJuridica pessoa)
+        public ActionResult Criar(PessoaFisica pessoa)
         {
-            if (string.IsNullOrEmpty(pessoa.CNPJ)) // Error 500
+            if (string.IsNullOrEmpty(pessoa.CPF)) // Error 500
                 return BadRequest("Não foi possível adicionar valor nulo");
 
             pessoaJuridicaService.Adicionar(pessoa);
 
-            return Redirect("/PessoaFisica/Index");
+            return Redirect("/PessoaJuridica/Index");
         }
 
         [HttpPost] //[HttpDelete]
