@@ -42,6 +42,7 @@ namespace BancoRoxinho.Dominio.Model
             }
         }
 
+
         public bool VerificarCPF(string cpfASerValdido)
         {
             var verificador = new Main();
