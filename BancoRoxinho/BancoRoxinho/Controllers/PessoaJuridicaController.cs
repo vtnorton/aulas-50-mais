@@ -5,20 +5,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BancoRoxinho.Controllers
 {
-    public class PessoaFisicaController : Controller
+    public class PessoaJuridicaController : Controller
     {
-        PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
+        PessoaJuridicaService pessoaJuridicaService = new PessoaJuridicaService();
 
         public ActionResult Index()
         {
-            var listaObtida = pessoaFisicaService.ObterLista();
+            var listaObtida = pessoaJuridicaService.ObterLista();
             return View(listaObtida);
         }
 
-        [Route("/PessoaFisica/{cpf}/Visualizar")]
+        [Route("/PessoaJuridica/{cpf}/Visualizar")]
         public ActionResult Visualizar([FromRoute] string cpf)
         {
-            var pessoa = pessoaFisicaService.ObterPessoa(cpf);
+            var pessoa = pessoaJuridicaService.ObterPessoa(cpf);
             return View(pessoa);
         }
 
@@ -29,22 +29,22 @@ namespace BancoRoxinho.Controllers
         }
 
         [HttpPost]
-        public ActionResult Criar(PessoaFisica pessoa)
+        public ActionResult Criar(PessoaJuridica pessoa)
         {
             if (string.IsNullOrEmpty(pessoa.CPF)) // Error 500
                 return BadRequest("Não é possível adicionar uma pessoa sem CPF.");
 
-            pessoaFisicaService.Adicionar(pessoa);
+            pessoaJuridicaService.Adicionar(pessoa);
 
-            return Redirect("/PessoaFisica/Index");
+            return Redirect("/PessoaJuridica/Index");
         }
 
         [HttpPost] //[HttpDelete]
-        [Route("/PessoaFisica/Deletar/{cpf}")]
-        // localhost:5001/PessoaFisica/Deletar/000.000.000-00
+        [Route("/PessoaJuridica/Deletar/{cpf}")]
+        // localhost:5001/PessoaJuridica/Deletar/000.000.000-00
         public ActionResult Deletar([FromRoute] string cpf)
         {
-            pessoaFisicaService.Excluir(cpf);
+            pessoaJuridicaService.Excluir(cpf);
 
             // nameof(Index) == "Index"
             // nameof(RedirectToAction) == "RedirectToAction"
@@ -53,12 +53,12 @@ namespace BancoRoxinho.Controllers
 
 
         [HttpDelete]
-        [Route("/PessoaFisica/{id}/Deletar")]
-        // https://localhost:5001/PessoaFisica/25/Deletar
-        // https://www.sharerh.com/PessoaFisica/25/Deletar
+        [Route("/PessoaJuridica/{id}/Deletar")]
+        // https://localhost:5001/PessoaJuridica/25/Deletar
+        // https://www.sharerh.com/PessoaJuridica/25/Deletar
         public ActionResult Deletar([FromRoute] int id)
         {
-            // pessoaFisicaService.Excluir(id)
+            // pessoaJuridicaService.Excluir(id)
             return RedirectToAction(nameof(Index));
         }
     }
