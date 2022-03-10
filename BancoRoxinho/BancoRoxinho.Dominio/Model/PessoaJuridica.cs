@@ -27,19 +27,9 @@ namespace BancoRoxinho.Dominio.Model
 
             public bool VerificarCNPJ(string cnpj)
             {
-                cnpj = cnpj.Trim('/', '.', '-')
-                           .Replace(".", string.Empty)
-                           // cnpj == "73410013/0001-02"
-                           .Replace("/", "")
-                           // cnpj == "734100130001-02"
-                           .Replace("-", "");
-                // cnpj == "73410013000102"
+            cnpj = cnpj.Trim('/', '.', '-');
 
                 return true;
             }
-    
-        
-
     }
-
 }

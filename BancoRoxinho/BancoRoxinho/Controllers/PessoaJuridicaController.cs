@@ -15,7 +15,7 @@ namespace BancoRoxinho.Controllers
             return View(ListaObtida);
         }
 
-        [Route("/PessoaFisica/{cpf}/Visualizar")]
+        [Route("/PessoaJuridica/{id}/Visualizar")]
         public ActionResult Visualizar([FromRoute] string cpf)
         {
             var pessoa = pessoaJuridicaService.ObterPessoa(cpf);
@@ -29,23 +29,22 @@ namespace BancoRoxinho.Controllers
         }
 
         [HttpPost]
-        public ActionResult Criar(PessoaFisica pessoa)
+        public ActionResult Criar(PessoaJuridica pessoa)
         {
-            if (string.IsNullOrEmpty(pessoa.CPF)) // Error 500
+            if (string.IsNullOrEmpty(pessoa.CNPJ)) // Error 500
                 return BadRequest("Não foi possível adicionar valor nulo");
 
-            pessoaJuridicaService.Adicionar(pessoa);
+            pessoaJuridicaService.Adicionar();
 
             return Redirect("/PessoaJuridica/Index");
         }
 
         [HttpPost] //[HttpDelete]
-        [Route("/PessoaFisica/Deletar/{cpf}")]
-        //  localhost:5001/PessoaFisica/Deletar/000.000.000-00
+        [Route("/PessoaJuridica/Deletar/{cnpj}")]
 
-        public ActionResult Deletar([FromRoute] string cpf)
+        public ActionResult Deletar([FromRoute] string cnpj)
         {
-            pessoaJuridicaService.Excluir(cpf);
+            pessoaJuridicaService.Excluir(cnpj); 
 
             // nameof(Index) == "Index"
             // nameof(RedirectToAction) == "RedirectToAction"
@@ -53,9 +52,7 @@ namespace BancoRoxinho.Controllers
         }
 
         [HttpDelete]
-        [Route("/PessoaFisica/{id}/Deletar")]
-        //https://localhost:5001/PessoaFisica/25/Deletar
-        //https://www.sharerh.com/PessoaFisica/25/Deletar
+        [Route("/PessoaJuridica/{id}/Deletar")]
 
         public ActionResult Deletar([FromRoute] int id)
         {
