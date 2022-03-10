@@ -34,7 +34,7 @@ namespace BancoRoxinho.Controllers
             if (string.IsNullOrEmpty(pessoa.CNPJ)) // Error 500
                 return BadRequest("Não foi possível adicionar valor nulo");
 
-            pessoaJuridicaService.Adicionar();
+            pessoaJuridicaService.Adicionar(pessoa);
 
             return Redirect("/PessoaJuridica/Index");
         }
