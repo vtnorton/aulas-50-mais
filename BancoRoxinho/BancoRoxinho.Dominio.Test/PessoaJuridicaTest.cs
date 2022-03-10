@@ -18,6 +18,7 @@ namespace BancoRoxinho.Dominio.Test
             PessoaJuridica pessoa = new PessoaJuridica();
 
             var resultado = pessoa.VerificarCNPJ(cnpj);
+
             Assert.True(resultado == resultadoEsperado);
         }
     }

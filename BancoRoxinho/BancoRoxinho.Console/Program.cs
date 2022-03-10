@@ -1,16 +1,15 @@
-﻿using BancoRoxinho.Dominio.Dados;
-using BancoRoxinho.Dominio.Model;
+﻿using BancoRoxinho.Dominio.Model;
 using BancoRoxinho.Dominio.Services;
 using System;
 using System.Collections.Generic;
 
-namespace BancoRoxinho.Dominio
+namespace BancoRoxinho.Console
 {
-    internal class Program
+    public class Program
     {
         private static PessoaFisicaService pessoaFisicaService = new PessoaFisicaService();
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             // do while
             // faça enquanto
@@ -27,7 +26,7 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
-                
+
                 // switch case
                 // mudar  caso
 
@@ -63,8 +62,8 @@ namespace BancoRoxinho.Dominio
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("==== EXIBINDO PESSOAS FÍSICAS CADASTRADAS ====");
             List<PessoaFisica> listaDePessoas = pessoaFisicaService.ObterLista();
-            
-            foreach(PessoaFisica pessoa in listaDePessoas)
+
+            foreach (PessoaFisica pessoa in listaDePessoas)
             {
                 Console.WriteLine("\n" + pessoa.NomeCompleto);
                 Console.WriteLine("Nº da Conta: " + pessoa.ContaCorrente.NumeroDaConta);
@@ -84,7 +83,7 @@ namespace BancoRoxinho.Dominio
 
             Console.WriteLine("Digite o nome da pessoa: ");
             pessoa.Nome = Console.ReadLine();
-        
+
             Console.WriteLine("Digite o seu sobrenome: ");
             pessoa.Sobrenome = Console.ReadLine();
 
@@ -103,7 +102,7 @@ namespace BancoRoxinho.Dominio
 
         static void EscolheuAOpcaoEditarUmaPessoaFisica()
         {
-            
+
             Console.WriteLine("Digite o seu CPF: ");
             string cpf = Console.ReadLine();
 
@@ -112,7 +111,7 @@ namespace BancoRoxinho.Dominio
             Console.WriteLine("Pressione ENTER para pular uma etapa.");
             Console.WriteLine("Digite o nome da pessoa: (Nome atual: " + pessoaEditada.Nome + ")");
             pessoaEditada.Nome = Console.ReadLine();
-        
+
             Console.WriteLine("Digite o seu sobrenome: (Sobrenome atual: " + pessoaEditada.Sobrenome + ")");
             pessoaEditada.Sobrenome = Console.ReadLine();
 
@@ -123,10 +122,10 @@ namespace BancoRoxinho.Dominio
             pessoaEditada.Endereco = Console.ReadLine();
 
             pessoaFisicaService.Editar(
-                pessoaEditada.CPF, 
-                pessoaEditada.Nome, 
-                pessoaEditada.Sobrenome, 
-                pessoaEditada.Idade, 
+                pessoaEditada.CPF,
+                pessoaEditada.Nome,
+                pessoaEditada.Sobrenome,
+                pessoaEditada.Idade,
                 pessoaEditada.Endereco);
         }
 
@@ -135,9 +134,9 @@ namespace BancoRoxinho.Dominio
             Console.WriteLine("Digite o CPF da pessoa a ser excluida: ");
             string cpf = Console.ReadLine();
 
-            pessoaFisicaService.Excluir(cpf); 
+            pessoaFisicaService.Excluir(cpf);
         }
-        
+
         static void EscolheuAOpcaoDeVisualizarPessoaFisica()
         {
             Console.WriteLine("Digite o CPF da pessoa que quer visualizar: ");

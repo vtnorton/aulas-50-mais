@@ -4,47 +4,22 @@ using BancoRoxinho.Dominio.Dados;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BancoRoxinho.Dominio.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220309223246_05")]
+    partial class _05
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BancoRoxinho.Dominio.Model.Agencia", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DataDeCriacao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Endereco")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(45)
-                        .HasColumnType("nvarchar(45)");
-
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Agencias");
-                });
 
             modelBuilder.Entity("BancoRoxinho.Dominio.Model.ContaCorrente", b =>
                 {
@@ -83,17 +58,13 @@ namespace BancoRoxinho.Dominio.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Idade")
-                        .HasColumnType("int")
-                        .HasColumnName("idade");
+                        .HasColumnType("int");
 
                     b.Property<string>("Nome")
-                        .HasMaxLength(45)
-                        .HasColumnType("nvarchar(45)")
-                        .HasColumnName("nome");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeDaMae")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("nome_da_mae");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sobrenome")
                         .HasColumnType("nvarchar(max)");
@@ -113,20 +84,13 @@ namespace BancoRoxinho.Dominio.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CNPJ")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ContaCorrenteId")
                         .HasColumnType("int");
 
                     b.Property<string>("Endereco")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RazaoSocial")
-                        .IsRequired()
-                        .HasMaxLength(45)
-                        .HasColumnType("nvarchar(45)");
 
                     b.HasKey("Id");
 
