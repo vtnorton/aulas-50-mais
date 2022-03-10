@@ -9,6 +9,7 @@ namespace BancoRoxinho.Dominio.Dados
         public DbSet<PessoaFisica> PessoasFisicas { get; set; }
         public DbSet<PessoaJuridica> PessoasJuridicas { get; set; }
         public DbSet<Transacoes> Transacoes { get; set; }
+        public DbSet<Agencia> Agencias { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
