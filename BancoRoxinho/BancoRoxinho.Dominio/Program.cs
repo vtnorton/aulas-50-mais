@@ -27,6 +27,8 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("4 - Deletar uma pessoa física");
                 Console.WriteLine("5 - Visualizar uma pessoa física");
                 Console.WriteLine("6 - Cadastrar uma pessoa juridica");
+                Console.WriteLine("7 - Visualizar pessoas juridicas");
+
                 Console.WriteLine("0 - Sair");
 
                 int escolhaDoUsuario = int.Parse(Console.ReadLine());
@@ -53,6 +55,9 @@ namespace BancoRoxinho.Dominio
                         break;
                     case 6:
                         EscolheuAOpcaoDeCadastrarPessoaJuridica();
+                        break;
+                    case 7:
+                        EscolheuAOpcaoDeVisualizarPessoaJuridica();
                         break;
                     case 0:
                     default: //padrão
@@ -169,6 +174,26 @@ namespace BancoRoxinho.Dominio
             Console.WriteLine(pessoa.NomeCompleto);
             Console.WriteLine(pessoa.Idade);
             Console.WriteLine(pessoa.Endereco);
+        }
+
+        static void EscolheuAOpcaoDeVisualizarPessoaJuridica()
+        {
+            var pessoa = new PessoaJuridicaService();
+            var listaCompleta = pessoa.ObterLista();
+            
+            foreach (var  item in listaCompleta)
+            {
+                Console.WriteLine(item.RazaoSocial);
+                Console.WriteLine(item.NomeFantasia);
+                Console.WriteLine(item.CPNJ);
+                Console.WriteLine(item.Id);
+
+
+                Console.WriteLine("Digite Enter");
+                Console.ReadLine();
+            }
+
+
         }
     }
 }

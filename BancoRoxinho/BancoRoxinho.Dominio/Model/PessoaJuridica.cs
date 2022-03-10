@@ -11,8 +11,6 @@ namespace BancoRoxinho.Dominio.Model
     // Pessoa Juridica herda Pessoa
     public class PessoaJuridica : Pessoa
     {
-        [Key]
-        public int Id { get; set; }
         public string CPNJ { get; set; }
         public string RazaoSocial { get; set; }
         public string NomeFantasia { get; set; }

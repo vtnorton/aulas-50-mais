@@ -1,5 +1,6 @@
 ﻿using BancoRoxinho.Dominio.Dados;
 using BancoRoxinho.Dominio.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,14 @@ namespace BancoRoxinho.Dominio.Services
 
         }
 
+       
 
+        public List<PessoaJuridica> ObterLista()
+        {
+            var resultado = _contextPj.PessoasJuridicas
+                .OrderBy(item => item.CPNJ).ToList();
+            return resultado;
+        }
 
     }
 }
