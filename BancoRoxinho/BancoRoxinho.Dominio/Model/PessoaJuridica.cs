@@ -6,28 +6,40 @@ namespace BancoRoxinho.Dominio.Model
 {
     public class PessoaJuridica : Pessoa
     {
-        [Key]
-        public new int Id { get; set; }
+            public string CNPJ { get; set; }
 
-        [Required]
-        [MaxLength(15)]
-        public string CNPJ { get; set; }
-        public string RazaoSocial { get; set; }
+            [Required]
+            public string RazaoSocial { get; set; }
 
-        public bool VerificarCNPJ(string cnpjASerValdido)
-        {
-            var verificador = new Main();
-            var cnpjValido = verificador.IsValidCPFCNPJ(cnpjASerValdido);
-            return cnpjValido;
-        }
+            public string NomeFanstasia { get; set; }
+
+            [NotMapped]
+            public string Nome
+            {
+                get
+                {
+                    if (string.IsNullOrWhiteSpace(NomeFanstasia))
+                        return RazaoSocial;
+
+                    return NomeFanstasia;
+                }
+            }
+
+            public bool VerificarCNPJ(string cnpj)
+            {
+                cnpj = cnpj.Trim('/', '.', '-')
+                           .Replace(".", string.Empty)
+                           // cnpj == "73410013/0001-02"
+                           .Replace("/", "")
+                           // cnpj == "734100130001-02"
+                           .Replace("-", "");
+                // cnpj == "73410013000102"
+
+                return true;
+            }
+    
+        
+
     }
-}
 
-/*
- * public bool VerificarCNPJ()
- * {
- *      string cnpj = "73.410.013/0001-02";
- *      cnpj = cnpj.Trim(".", "-", "/",);
- *             
- *      return true;
- */
+}
