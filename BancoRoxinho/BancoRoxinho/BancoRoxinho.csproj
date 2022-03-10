@@ -16,4 +16,8 @@
     <ProjectReference Include="..\BancoRoxinho.Dominio\BancoRoxinho.Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\PessoaJuridica\" />
+  </ItemGroup>
+
 </Project>

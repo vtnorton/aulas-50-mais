@@ -22,3 +22,12 @@ namespace BancoRoxinho.Dominio.Model
         }
     }
 }
+
+/*
+ * public bool VerificarCNPJ()
+ * {
+ *      string cnpj = "73.410.013/0001-02";
+ *      cnpj = cnpj.Trim(".", "-", "/",);
+ *             
+ *      return true;
+ */
