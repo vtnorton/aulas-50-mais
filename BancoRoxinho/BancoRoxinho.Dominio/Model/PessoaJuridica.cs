@@ -8,6 +8,8 @@ namespace BancoRoxinho.Dominio.Model
     // Pessoa Juridica herda Pessoa
     public class PessoaJuridica : Pessoa
     {
+        private string cnpjaValidar;
+
         //[Key]
         //public int Id { get; set; }
         [Required]
@@ -19,7 +21,10 @@ namespace BancoRoxinho.Dominio.Model
         public bool VerificaCNPJ(string cnpjAValidar)
         {
             var verificadorCNPJ = new Main();
-            cnpjAValidar = cnpjAValidar.Trim(new Char[] { '.', '/', '-' });
+            //cnpjAValidar = cnpjAValidar.Trim('.', '/', '-' ); Não funcionou
+            cnpjAValidar = cnpjAValidar.Replace(".", "");
+            cnpjAValidar = cnpjAValidar.Replace("-", "");
+            cnpjAValidar = cnpjAValidar.Replace("/", "");
             return verificadorCNPJ.IsValidCPFCNPJ(cnpjAValidar);
         }
 
