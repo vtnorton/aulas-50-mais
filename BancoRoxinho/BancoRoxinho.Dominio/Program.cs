@@ -28,6 +28,8 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("5 - Visualizar uma pessoa física");
                 Console.WriteLine("6 - Cadastrar uma pessoa juridica");
                 Console.WriteLine("7 - Visualizar pessoas juridicas");
+                Console.WriteLine("8 - Excluir pessoa juridica");
+
 
                 Console.WriteLine("0 - Sair");
 
@@ -58,6 +60,9 @@ namespace BancoRoxinho.Dominio
                         break;
                     case 7:
                         EscolheuAOpcaoDeVisualizarPessoaJuridica();
+                        break;
+                    case 8:
+                        EscolheuAOpcaoDeExcluirPessoaJuridica();
                         break;
                     case 0:
                     default: //padrão
@@ -102,6 +107,13 @@ namespace BancoRoxinho.Dominio
             }
 
             Console.ResetColor();
+        }
+        static void EscolheuAOpcaoDeExcluirPessoaJuridica()
+        {
+            Console.WriteLine("Digite o CNPJ da empreas a ser excluída: ");
+            var cnpj = Console.ReadLine();
+            pessoaJuridicaService.ExcluirPJ(cnpj);
+
         }
 
         static void EscolheuAOpcaoCadastrarPessoa()
