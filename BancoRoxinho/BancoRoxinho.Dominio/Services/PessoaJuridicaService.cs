@@ -48,6 +48,21 @@ namespace BancoRoxinho.Dominio.Services
 
         }
 
+        public PessoaJuridica ObterPessoaPeloId(int id)
+        {
+            var pessoa = _context.PessoasJuridicas
+                .Where(item => item.Id == id)
+                .Include(item => item.ContaCorrente).ToList();
+
+            if (pessoa.Count() > 0)
+            {
+                return pessoa.First();
+            }
+
+            return null;
+
+        }
+
         public void Excluir(string cnpj)
         {
             var pessoa = ObterPessoa(cnpj);
@@ -57,6 +72,17 @@ namespace BancoRoxinho.Dominio.Services
                 _context.SaveChanges();
             }
            
+        }
+
+        public void ExcluirPeloId(int id)
+        {
+            var pessoa = ObterPessoaPeloId(id);
+            if (pessoa != null)
+            {
+                _context.PessoasJuridicas.Remove(pessoa);
+                _context.SaveChanges();
+            }
+
         }
 
 

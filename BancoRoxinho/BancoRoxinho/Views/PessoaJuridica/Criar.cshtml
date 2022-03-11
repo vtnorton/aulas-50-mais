@@ -1,0 +1,36 @@
+﻿@model PessoaJuridica
+
+<h1>Cadastrar nova empresa</h1>
+<hr />
+<form method="post" asp-action="Criar">
+    <div class="row">
+        <div class="col-3">
+            <label>
+                Empresa:
+                <input class="form-control" type="text" asp-for="Nome" placeholder="Nome da empresa" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <label>
+                CNPJ
+                <input class="form-control" type="text" asp-for="CNPJ" placeholder="000.000.000-00" />
+            </label>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>
+                Endereço
+                <textarea class="form-control" asp-for="Endereco"></textarea>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input class="btn btn-primary" type="submit" value="Cadastar PJ" />
+        </div>
+    </div>
+</form>

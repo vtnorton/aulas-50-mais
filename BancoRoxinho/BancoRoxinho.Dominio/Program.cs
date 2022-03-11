@@ -99,7 +99,7 @@ namespace BancoRoxinho.Dominio
                 Console.WriteLine("Idade: " + pessoa.Idade);
             }
 
-            restauraTelaInicial();
+            RestauraTelaInicial();
         }
 
         static void EscolheuAOpcaoCadastrarPessoa()
@@ -173,7 +173,7 @@ namespace BancoRoxinho.Dominio
             Console.WriteLine(pessoa.Idade);
             Console.WriteLine(pessoa.Endereco);
 
-            restauraTelaInicial();
+            RestauraTelaInicial();
         }
 
         static void OpcaoCadastrarPJ()
@@ -209,7 +209,7 @@ namespace BancoRoxinho.Dominio
                 }
             }
 
-            restauraTelaInicial();
+            RestauraTelaInicial();
         }
         static void OpcaoExcluirPJ()
         {
@@ -230,7 +230,7 @@ namespace BancoRoxinho.Dominio
             {
                 Console.WriteLine(pessoa.Nome);
                 Console.WriteLine(pessoa.Endereco);
-                restauraTelaInicial();
+                RestauraTelaInicial();
             }
             
 
@@ -271,7 +271,7 @@ namespace BancoRoxinho.Dominio
                     pessoaEditada.Endereco);
             }
         }
-        static void restauraTelaInicial()
+        static void RestauraTelaInicial()
         {
             Console.WriteLine("\nTecle ENTER para continuar");
             Console.ReadLine();

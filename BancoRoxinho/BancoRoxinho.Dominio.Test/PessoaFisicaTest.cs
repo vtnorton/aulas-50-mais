@@ -11,15 +11,12 @@ namespace BancoRoxinho.Dominio.Test
         public void DeveValidarIdadeDaPessoaQuandoForMaiorDeDezoito()
         {
             // definir o que vai ser testado
-            int idade = 26;
-            bool resultadoEsperado = true;
             var pessoa = new PessoaFisica();
-
-            pessoa.Nome = "Vitor";
-            pessoa.Sobrenome = "Norton";
-
+            pessoa.Idade = 35;
+            bool resultadoEsperado = true;
+            
             // executar o programa
-            bool resultado = pessoa.VerificarMaioridade(idade);
+            bool resultado = pessoa.MaiorIdade;
 
             // validar o teste
             Assert.True(resultado == resultadoEsperado);
@@ -29,12 +26,12 @@ namespace BancoRoxinho.Dominio.Test
         public void DeveValidarIdadeDaPessoaQuandoForMenorDeIdade()
         {
             // definir o que vai ser testado
-            int idade = 10;
-            bool resultadoEsperado = false;
             var pessoa = new PessoaFisica();
+            pessoa.Idade = 15;
+            bool resultadoEsperado = false;
 
             // executar o programa
-            bool resultado = pessoa.VerificarMaioridade(idade);
+            bool resultado = pessoa.MaiorIdade;
 
             // validar o teste
             Assert.True(resultado == resultadoEsperado);
@@ -44,12 +41,42 @@ namespace BancoRoxinho.Dominio.Test
         public void DeveValidarIdadeDaPessoaQuandoDezoitoAnos()
         {
             // definir o que vai ser testado
-            int idade = 18;
+            var pessoa = new PessoaFisica();
+            pessoa.Idade = 18;
+            bool resultadoEsperado = true;
+
+            // executar o programa
+            bool resultado = pessoa.MaiorIdade;
+
+            // validar o teste
+            Assert.True(resultado == resultadoEsperado);
+        }
+
+        [Fact]
+        public void DeveRetornarTrueParaCpfValido()
+        {
+            // definir o que vai ser testado
+            string cpf = "923.889.610-09";
             bool resultadoEsperado = true;
             var pessoa = new PessoaFisica();
 
             // executar o programa
-            bool resultado = pessoa.VerificarMaioridade(idade);
+            bool resultado = pessoa.VerificarCPF(cpf);
+
+            // validar o teste
+            Assert.True(resultado == resultadoEsperado);
+        }
+
+        [Fact]
+        public void DeveRetornarFalseParaCpfInvalido()
+        {
+            // definir o que vai ser testado
+            string cpf = "114.215.838-11";
+            bool resultadoEsperado = false;
+            var pessoa = new PessoaFisica();
+
+            // executar o programa
+            bool resultado = pessoa.VerificarCPF(cpf);
 
             // validar o teste
             Assert.True(resultado == resultadoEsperado);
