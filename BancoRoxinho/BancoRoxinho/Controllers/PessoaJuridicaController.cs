@@ -39,15 +39,12 @@ namespace BancoRoxinho.Controllers
             return Redirect("/PessoaJuridica/Index");
         }
 
-        [HttpPost] //[HttpDelete]
+        [HttpPost]
         [Route("/PessoaJuridica/Deletar/{id}")]
-        // localhost:5001/PessoaJuridica/Deletar/000.000.000-00
         public ActionResult Deletar([FromRoute] int id)
         {
             pessoaJuridicaService.ExcluirPeloId(id);
 
-            // nameof(Index) == "Index"
-            // nameof(RedirectToAction) == "RedirectToAction"
             return RedirectToAction(nameof(Index));
         }
                
