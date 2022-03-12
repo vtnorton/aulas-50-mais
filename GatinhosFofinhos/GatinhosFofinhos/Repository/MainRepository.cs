@@ -73,6 +73,7 @@ namespace GatinhosFofinhos.Repository
             {
                 var categoria = new Categoria()
                 {
+                    Id = (int)resultado["Id"],
                     Nome = resultado["Nome"].ToString(),
                     Descricao = resultado["Descricao"].ToString(),
                     IdCategoria = (int)resultado["IdCategoria"]
@@ -103,14 +104,32 @@ namespace GatinhosFofinhos.Repository
             var resultado = sqlCommand.ExecuteReader();
             while (resultado.Read())
             {
+                categoria.Id = (int)resultado["Id"];
                 categoria.Nome = (string)resultado["Nome"];
                 categoria.IdCategoria = (int)resultado["IdCategoria"];
-                categoria.Descricao = (string)resultado["Descricao"];
+                categoria.Descricao = resultado["Descricao"].ToString();
             }
 
             _sqlConnection.Close();
 
             return categoria;
+        }
+
+        public void DeleteCategoria(int idCategoria)
+        {
+            var comando = $"DELETE FROM {_tabelaCategoria} WHERE Id = @id";
+            var sqlCommand = new SqlCommand(comando, _sqlConnection);
+            var parametro = new SqlParameter()
+            {
+                ParameterName = "@id",
+                Value = idCategoria
+            };
+
+            sqlCommand.Parameters.Add(parametro);
+
+            _sqlConnection.Open();
+            sqlCommand.ExecuteNonQuery();
+            _sqlConnection.Close();
         }
     }
 }

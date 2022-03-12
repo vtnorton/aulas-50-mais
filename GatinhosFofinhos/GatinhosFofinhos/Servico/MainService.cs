@@ -3,6 +3,8 @@ using GatinhosFofinhos.Models.ViewModels;
 using GatinhosFofinhos.Repository;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace GatinhosFofinhos.Servico
 {
@@ -28,17 +30,34 @@ namespace GatinhosFofinhos.Servico
             return listaDeCategoria;
         }
 
-        public VisualizarViewModel ObterVisualizacao(int idCategoria)
+        public Categoria ObterCategoria(int id)
+        {
+            // EXERCÍCIO 01
+            // Dono da empresa falou que o sistema tá muito lento 
+            // e ai o arquiteto sugeriu uma alteração para deixar mais rápido.
+            // O que você tem que fazer:
+            // Obter Categoria filtrado direto do banco de dados
+            var lista = ObterLista();
+            var categoria = lista.Where(item => item.Id == id).First();
+            return categoria;
+        }
+
+        public async Task<VisualizarViewModel> ObterVisualizacao(int idCategoria)
         {
             var visualizador = new VisualizarViewModel();
 
             var categoria = _mainRepository.SelectCategoria(idCategoria);
             visualizador.Categoria = categoria;
 
-            var listaDeGatinhos = _catAPIService.ObterGatosPorCategoria(categoria.IdCategoria);
+            var listaDeGatinhos = await _catAPIService.ObterGatosPorCategoria(categoria.IdCategoria);
             visualizador.Lista = listaDeGatinhos;
 
             return visualizador;
+        }
+
+        public void DeletarCategoria(int idDaCatagoria)
+        {
+            _mainRepository.DeleteCategoria(idDaCatagoria);
         }
     }
 }

@@ -41,10 +41,37 @@ namespace GatinhosFofinhos.Controllers
         }
 
         [Route("Gatinhos/Visualizar/{id}")]
-        public IActionResult Visualizar([FromRoute] int id)
+        public async Task<IActionResult> Visualizar([FromRoute] int id)
         {
-            var categoria = _mainService.ObterVisualizacao(id);
+            var categoria = await _mainService.ObterVisualizacao(id);
             return View(categoria);
+        }
+
+        [Route("Gatinhos/Deletar/{id}")]
+        public IActionResult Deletar([FromRoute] int id)
+        {
+            _mainService.DeletarCategoria(id);
+            return Redirect("/");
+        }
+
+        [HttpGet]
+        [Route("Gatinhos/Editar/{id}")]
+        public async Task<IActionResult> Editar([FromRoute] int id)
+        {
+            var categoria = _mainService.ObterCategoria(id);
+            var listaDeCategorias = await _catAPIService.ObterLista();
+
+            ViewData["CategoriasDaAPIDeGatos"] = listaDeCategorias;
+
+            return View(categoria);
+        }
+
+        [HttpPost]
+        [Route("Gatinhos/Editar/{id}")]
+        public IActionResult Editar([FromRoute] int id, Categoria categoria)
+        {
+            // EDIÇÃO
+            return Redirect("Gatinhos/Visualizar/" + id);
         }
     }
 }

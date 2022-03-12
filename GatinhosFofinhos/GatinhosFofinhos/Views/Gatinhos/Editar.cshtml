@@ -1,0 +1,52 @@
+﻿@model Categoria;
+
+<h2>Editar a categoria @Model.Nome</h2>
+
+<form method="post" action="Editar">
+    <div class="row">
+        <div class="col">
+            <label>
+                Nome da categoria:
+                <input asp-for="Nome" class="form-control" type="text" placeholder="Gatos com chapéus" />
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label>
+                Descrição:
+                <input asp-for="Descricao" class="form-control" type="text" />
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label>
+                Alterar a associação:
+                <select asp-for="IdCategoria" class="form-select">
+                    <option label="-- Selecionar --" value="0"></option>
+                    @{
+                        var lista = (List<CategoriasDaAPIDeGatos>)ViewData["CategoriasDaAPIDeGatos"];
+                        foreach(var item in lista)
+                        {
+                            <option label="@item.Name" value="@item.Id"></option>
+                        }
+                    }
+                </select>
+            </label>
+        </div>
+    </div>
+</form>
+<br />
+<hr />
+<div class="row">
+    <div class="col">
+        <a class="btn btn-primary" role="button" href="/">Voltar</a>
+
+        <form method="post" asp-action="Deletar" asp-route-id="@Model.Id">
+            <input type="submit" class="btn btn-danger" value="Excluir esse categoria" />
+        </form>
+    </div>
+</div>

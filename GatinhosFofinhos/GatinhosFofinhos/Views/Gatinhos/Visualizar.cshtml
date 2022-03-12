@@ -3,25 +3,26 @@
 
 <h2>@Model.Categoria.Nome</h2>
 <p>@Model.Categoria.Descricao</p>
-<a href="/">Voltar</a>
 
 <div class="row">
     @{
         foreach(var item in Model.Lista)
         {
             <div class="col-3">
-                <div class="card">
-                    <img src="@item.UrlDaImagem" class="card-img-top" alt="@item.Descricao">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Nome</h5>
-                        <div class="alert alert-info">
-                          @item.Temperamento
-                        </div>
-                        <p class="card-text">@item.Descricao</p>
-                        <a href="#" class="btn btn-primary">@item.UrlDaWikipedia</a>
-                    </div>
-                </div>
+                <img src="@item.Url" class="rounded img-fluid img-thumbnail">
             </div>
         }
     }
+</div>
+<br />
+<hr />
+<div class="row">
+    <div class="col">
+        <a class="btn btn-primary" role="button" href="/">Voltar</a>
+
+        <a class="btn btn-primary" role="button" href="/Gatinhos/Editar/@Model.Categoria.Id">Editar</a>
+        <form method="post" asp-action="Deletar" asp-route-id="@Model.Categoria.Id">
+            <input type="submit" class="btn btn-danger" value="Excluir esse categoria" />
+        </form>
+    </div>
 </div>

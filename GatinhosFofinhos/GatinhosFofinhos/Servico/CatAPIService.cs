@@ -10,20 +10,22 @@ namespace GatinhosFofinhos.Servico
 {
     public class CatAPIService
     {
-        private readonly string urlDaAPI;
-        private readonly string apiKey;
+        private HttpClient _httpClient;
+        private readonly string _urlDaAPI;
+        private readonly string _apiKey;
+
         public CatAPIService(IConfiguration configuration)
         {
-            urlDaAPI = configuration["TheAPICat:URL"].ToString();
-            apiKey = configuration["TheAPICat:Key"].ToString();
+            _urlDaAPI = configuration["TheAPICat:URL"].ToString();
+            _apiKey = configuration["TheAPICat:Key"].ToString();
+
+            _httpClient = new HttpClient();
+            _httpClient.DefaultRequestHeaders.Add("x-api-key", _apiKey);
         }
 
         public async Task<List<CategoriasDaAPIDeGatos>> ObterLista()
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("x-api-key", apiKey);
-
-            var resposta = await client.GetAsync(urlDaAPI + "categories");
+            var resposta = await _httpClient.GetAsync(_urlDaAPI + "categories");
 
             if(resposta.IsSuccessStatusCode)
             {
@@ -35,10 +37,19 @@ namespace GatinhosFofinhos.Servico
             return new List<CategoriasDaAPIDeGatos>();
         } 
 
-        public List<FotosDeGatinhos> ObterGatosPorCategoria(int idCategoria)
+        public async Task<List<FotosDeGatinhos>> ObterGatosPorCategoria(int idCategoria)
         {
+            var resposta = await _httpClient.GetAsync($"{_urlDaAPI}images/search?limit=8&category_ids={idCategoria}");
 
-            return null;
+            if (resposta.IsSuccessStatusCode)
+            {
+
+                var conteudoDaResposta = await resposta.Content.ReadAsStringAsync();
+                var listaDeFotosDeGatinhos = JsonConvert.DeserializeObject<List<FotosDeGatinhos>>(conteudoDaResposta);
+                return listaDeFotosDeGatinhos;
+            }
+
+            return new List<FotosDeGatinhos>();
         }
     }
 }
