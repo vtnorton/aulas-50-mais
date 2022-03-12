@@ -1,47 +1,97 @@
 ﻿@model Categoria;
 
-<form method="post" asp-action="Adicionar">
-    <div class="row">
-        <div class="col">
-            <label>
-                Nome da categoria:
-                <input asp-for="Nome" class="form-control" type="text" placeholder="Gatos com chapéus" />
-            </label>
-        </div>
-    </div>
+<div class="row">
+    <div class="col-5">
+        <form method="post" asp-action="Adicionar">
+            <div class="row">
+                <div class="col">
+                    <label>
+                        Nome da categoria:
+                        <input asp-for="Nome" class="form-control" type="text" placeholder="Gatos com chapéus" />
+                    </label>
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="col">
-            <label>
-                Descrição:
-                <input asp-for="Descricao" class="form-control" type="text" />
-            </label>
-        </div>
-    </div>
+            <div class="row">
+                <div class="col">
+                    <label>
+                        Descrição:
+                        <input asp-for="Descricao" class="form-control" type="text" />
+                    </label>
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="col">
-            <label>
-                Associar com imagens de:
-                <select asp-for="IdCategoria" class="form-select">
-                    <option label="-- Selecionar --" value="0"></option>
-                    @{
-                        var lista = (List<CategoriasDaAPIDeGatos>)ViewData["CategoriasDaAPIDeGatos"];
-                        foreach(var item in lista)
-                        {
-                            <option label="@item.Name" value="@item.Id"></option>
-                        }
-                    }
-                </select>
-            </label>
-        </div>
-    </div>
+            <div class="row">
+                <div class="col">
+                    <label>
+                        Associar com imagens de:
+                        <select onchange="mudouACategoria(this.options[this.selectedIndex].value)" asp-for="IdCategoria" class="form-select">
+                            <option label="-- Selecionar --" value="0"></option>
+                            @{
+                                var lista = (List<CategoriasDaAPIDeGatos>)ViewData["CategoriasDaAPIDeGatos"];
+                                foreach(var item in lista)
+                                {
+                                    <option label="@item.Name" value="@item.Id"></option>
+                                }
+                            }
+                        </select>
+                    </label>
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="col">
-            <a class="btn btn-outline-primary" href="/">Voltar</a>
-            <input class="btn btn-primary" type="submit" value="Adicionar" />
-        </div>
+            <div class="row">
+                <div class="col">
+                    <label>
+                        Imagem da capa:
+                        <select id="possiveisCapas" asp-for="UrlDaCapa" class="form-select">
+                            <!-- CONSTRUIR OS OPTIONS DE ACORDO COM A RESPOSTA OBTIDA PELO JS -->
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a class="btn btn-outline-primary" href="/">Voltar</a>
+                    <input class="btn btn-primary" type="submit" value="Adicionar" />
+                </div>
+            </div>
+        </form>
     </div>
+    <div class="col-7">
+        <h4>Selecione a imagem da capa</h4>
+        <p>Associe uma categoria antes de selecionar a imagem.</p>
+        <div id="imagens"></div>
+    </div>
+</div>
 
-</form>
+
+<script>
+    function popularOSelect(dados){
+        $("#possiveisCapas").html('');
+        dados.forEach(item => {
+            var opcao = `<option value='${item.url}' label='Imagem com nome: ${item.id}'></option>`;
+            $("#possiveisCapas").append(opcao);
+        });
+    }
+
+    function mostrarAsImagens(dados){
+        $("#imagens").html('');
+        dados.forEach(item => {
+            var opcao = `
+                <figure class="figure">
+                    <img style="max-width: 250px" src='${item.url}' class="figure-img img-fluid rounded" alt='Imagem com nome: ${item.id}'>
+                    <figcaption class="figure-caption">Imagem com nome: ${item.id}</figcaption>
+                </figure>
+            `;
+            $("#imagens").append(opcao);
+        });
+    }
+
+    function mudouACategoria(idRecebido) {
+        var url = "https://api.thecatapi.com/v1/images/search?limit=3&category_ids=";
+        $.get(url + idRecebido, function(dados){
+            popularOSelect(dados);
+            mostrarAsImagens(dados);
+        });
+    }
+</script>

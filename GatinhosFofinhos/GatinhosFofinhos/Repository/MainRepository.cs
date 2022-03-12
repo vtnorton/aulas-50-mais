@@ -20,15 +20,16 @@ namespace GatinhosFofinhos.Repository
         public void InsertCategoria(Categoria categoria)
         {
             string comando = $"INSERT INTO {_tabelaCategoria}" +
-                $"(Nome, Descricao, IdCategoria) VALUES " +
-                $"(@nome, @descricao, @idcategoria)";
+                $"(Nome, Descricao, IdCategoria, UrlDaCapa) VALUES " +
+                $"(@nome, @descricao, @idcategoria, @urldacapa)";
 
             var sqlComando = new SqlCommand(comando, _sqlConnection);
 
             sqlComando.AdicionarParametrosDaCategoria(
                 categoria.IdCategoria,
                 categoria.Nome,
-                categoria.Descricao);
+                categoria.Descricao,
+                categoria.UrlDaCapa);
 
             _sqlConnection.Open();
 
@@ -54,7 +55,8 @@ namespace GatinhosFofinhos.Repository
                     Id = (int)resultado["Id"],
                     Nome = resultado["Nome"].ToString(),
                     Descricao = resultado["Descricao"].ToString(),
-                    IdCategoria = (int)resultado["IdCategoria"]
+                    IdCategoria = (int)resultado["IdCategoria"],
+                    UrlDaCapa = resultado["UrlDaCapa"].ToString()
                 };
 
                 categorias.Add(categoria);
@@ -106,7 +108,8 @@ namespace GatinhosFofinhos.Repository
             sqlCommand.AdicionarParametrosDaCategoria(
                 categoria.IdCategoria,
                 categoria.Nome,
-                categoria.Descricao);
+                categoria.Descricao,
+                categoria.UrlDaCapa);
 
             var parametro = new SqlParameter()
             {
@@ -146,7 +149,8 @@ namespace GatinhosFofinhos.Repository
             this SqlCommand comando,
             int idCategoria,
             string nome,
-            string descricao)
+            string descricao, 
+            string urlDaCapa)
         {
             var parametroDeNome = new SqlParameter()
             {
@@ -164,6 +168,16 @@ namespace GatinhosFofinhos.Repository
             else
                 parametroDeDescricao.Value = DBNull.Value;
 
+            var parametroDaCapa = new SqlParameter()
+            {
+                ParameterName = "@urldacapa"
+            };
+
+            if (urlDaCapa != null)
+                parametroDaCapa.Value = urlDaCapa;
+            else
+                parametroDaCapa.Value = DBNull.Value;
+
             var parametroDeIdCategoria = new SqlParameter()
             {
                 ParameterName = "@idcategoria",
@@ -173,6 +187,7 @@ namespace GatinhosFofinhos.Repository
             comando.Parameters.Add(parametroDeNome);
             comando.Parameters.Add(parametroDeDescricao);
             comando.Parameters.Add(parametroDeIdCategoria);
+            comando.Parameters.Add(parametroDaCapa);
 
             return comando;
         }

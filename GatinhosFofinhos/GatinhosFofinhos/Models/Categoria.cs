@@ -17,5 +17,7 @@ namespace GatinhosFofinhos.Models
         
         [MaxLength(140)]
         public string Descricao { get; set; }
+
+        public string UrlDaCapa { get; set; }
     }
 }

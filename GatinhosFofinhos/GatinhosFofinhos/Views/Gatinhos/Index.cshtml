@@ -11,6 +11,12 @@
         {
             <div class='col-4'>
                 <div class="card">
+                    @{
+                        if (!string.IsNullOrEmpty(item.UrlDaCapa))
+                        {
+                            <img src="@item.UrlDaCapa" class="card-img-top" alt="@item.Nome" />
+                        }
+                    }
                     <div class="card-body">
                         <h5 class="card-title">@item.Nome</h5>
                         <p class="card-text">@item.Descricao</p>
