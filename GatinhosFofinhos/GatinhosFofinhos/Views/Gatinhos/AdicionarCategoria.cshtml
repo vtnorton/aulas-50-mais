@@ -1,0 +1,47 @@
+﻿@model Categoria;
+
+<form method="post" asp-action="AdicionarCategoria">
+    <div class="row">
+        <div class="col">
+            <label>
+                Nome da categoria:
+                <input asp-for="Nome" class="form-control" type="text" placeholder="Gatos com chapéus" />
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label>
+                Descrição:
+                <input asp-for="Descricao" class="form-control" type="text" />
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label>
+                Associar com imagens de:
+                <select asp-for="IdCategoria" class="form-select">
+                    <option label="-- Selecionar --" value="0"></option>
+                    @{
+                        var lista = (List<CategoriasDaAPIDeGatos>)ViewData["CategoriasDaAPIDeGatos"];
+                        foreach(var item in lista)
+                        {
+                            <option label="@item.Name" value="@item.Id"></option>
+                        }
+                    }
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-outline-primary" href="/">Voltar</a>
+            <input class="btn btn-primary" type="submit" value="Adicionar" />
+        </div>
+    </div>
+
+</form>
