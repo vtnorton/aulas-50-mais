@@ -19,39 +19,16 @@ namespace GatinhosFofinhos.Repository
 
         public void InsertCategoria(Categoria categoria)
         {
-            var parametroDeNome = new SqlParameter()
-            {
-                ParameterName = "@nome",
-                Value = categoria.Nome
-            };
-
-            var parametroDeDescricao = new SqlParameter()
-            {
-                ParameterName = "@descricao"
-            };
-
-            if (categoria.Descricao != null)
-                parametroDeDescricao.Value = categoria.Descricao;
-            else
-                parametroDeDescricao.Value = DBNull.Value;
-            
-
-            var parametroDeIdCategoria = new SqlParameter()
-            {
-                ParameterName = "@idcategoria",
-                Value = categoria.IdCategoria
-            };
-
             string comando = $"INSERT INTO {_tabelaCategoria}" +
                 $"(Nome, Descricao, IdCategoria) VALUES " +
                 $"(@nome, @descricao, @idcategoria)";
 
             var sqlComando = new SqlCommand(comando, _sqlConnection);
 
-            sqlComando.Parameters.Add(parametroDeNome);
-            sqlComando.Parameters.Add(parametroDeDescricao);
-            sqlComando.Parameters.Add(parametroDeIdCategoria);
-
+            sqlComando.AdicionarParametrosDaCategoria(
+                categoria.IdCategoria,
+                categoria.Nome,
+                categoria.Descricao);
 
             _sqlConnection.Open();
 
@@ -67,6 +44,7 @@ namespace GatinhosFofinhos.Repository
             List<Categoria> categorias = new List<Categoria>();
 
             _sqlConnection.Open();
+
             var resultado = sqlCommand.ExecuteReader();
 
             while (resultado.Read())
@@ -115,6 +93,34 @@ namespace GatinhosFofinhos.Repository
             return categoria;
         }
 
+        public void UpdateCategoria(Categoria categoria, int idDaCategoria)
+        {
+            var comando = 
+                $@"UPDATE {_tabelaCategoria} 
+                   SET Nome = @nome,
+                       Descricao = @descricao,
+                       IdCategoria = @idcategoria
+                   WHERE Id = @id";
+            var sqlCommand = new SqlCommand(comando, _sqlConnection);
+
+            sqlCommand.AdicionarParametrosDaCategoria(
+                categoria.IdCategoria,
+                categoria.Nome,
+                categoria.Descricao);
+
+            var parametro = new SqlParameter()
+            {
+                ParameterName = "@id",
+                Value = idDaCategoria
+            };
+
+            sqlCommand.Parameters.Add(parametro);
+
+            _sqlConnection.Open();
+            sqlCommand.ExecuteNonQuery();
+            _sqlConnection.Close();
+        }
+
         public void DeleteCategoria(int idCategoria)
         {
             var comando = $"DELETE FROM {_tabelaCategoria} WHERE Id = @id";
@@ -130,6 +136,45 @@ namespace GatinhosFofinhos.Repository
             _sqlConnection.Open();
             sqlCommand.ExecuteNonQuery();
             _sqlConnection.Close();
+        }
+    }
+
+
+    public static class Helper
+    {
+        public static SqlCommand AdicionarParametrosDaCategoria(
+            this SqlCommand comando,
+            int idCategoria,
+            string nome,
+            string descricao)
+        {
+            var parametroDeNome = new SqlParameter()
+            {
+                ParameterName = "@nome",
+                Value = nome
+            };
+
+            var parametroDeDescricao = new SqlParameter()
+            {
+                ParameterName = "@descricao"
+            };
+
+            if (descricao != null)
+                parametroDeDescricao.Value = descricao;
+            else
+                parametroDeDescricao.Value = DBNull.Value;
+
+            var parametroDeIdCategoria = new SqlParameter()
+            {
+                ParameterName = "@idcategoria",
+                Value = idCategoria
+            };
+
+            comando.Parameters.Add(parametroDeNome);
+            comando.Parameters.Add(parametroDeDescricao);
+            comando.Parameters.Add(parametroDeIdCategoria);
+
+            return comando;
         }
     }
 }

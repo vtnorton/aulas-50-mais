@@ -1,8 +1,7 @@
 ﻿@model Categoria;
 
 <h2>Editar a categoria @Model.Nome</h2>
-
-<form method="post" action="Editar">
+<form method="post" asp-action="Editar" asp-route-id="@Model.Id">
     <div class="row">
         <div class="col">
             <label>
@@ -38,6 +37,7 @@
             </label>
         </div>
     </div>
+    <input type="submit" class="btn btn-primary" value="Salvar alterações" />
 </form>
 <br />
 <hr />

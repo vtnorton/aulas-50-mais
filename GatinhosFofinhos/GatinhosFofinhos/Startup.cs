@@ -8,12 +8,12 @@ namespace GatinhosFofinhos
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -42,7 +42,7 @@ namespace GatinhosFofinhos
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Gatinhos}/{action=Index}/{id?}");
             });
         }
     }

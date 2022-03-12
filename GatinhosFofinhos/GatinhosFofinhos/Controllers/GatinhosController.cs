@@ -18,8 +18,14 @@ namespace GatinhosFofinhos.Controllers
             _catAPIService = new CatAPIService(configuration);
         }
 
+        public IActionResult Index()
+        {
+            var listaDeCategorias = _mainService.ObterLista();
+            return View(listaDeCategorias);
+        }
+
         [HttpGet]
-        public async Task<IActionResult> AdicionarCategoria()
+        public async Task<IActionResult> Adicionar()
         {
             List<CategoriasDaAPIDeGatos> listaDeCategorias = await _catAPIService.ObterLista();
 
@@ -29,7 +35,7 @@ namespace GatinhosFofinhos.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionarCategoria(Categoria categoria)
+        public IActionResult Adicionar(Categoria categoria)
         {
             if (!ModelState.IsValid)
             {
@@ -70,8 +76,13 @@ namespace GatinhosFofinhos.Controllers
         [Route("Gatinhos/Editar/{id}")]
         public IActionResult Editar([FromRoute] int id, Categoria categoria)
         {
-            // EDIÇÃO
-            return Redirect("Gatinhos/Visualizar/" + id);
+            if (ModelState.IsValid)
+            {
+                _mainService.EditarCategoria(categoria, id);
+                return Redirect("/Gatinhos/Visualizar/" + id);
+            }
+
+            return Redirect("/Gatinhos/Editar/" + id);
         }
     }
 }
