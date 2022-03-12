@@ -1,4 +1,23 @@
-﻿@{
+﻿@model List<Categoria>
+@{
     ViewData["Title"] = "Início";
 }
 <a href="/Gatinhos/AdicionarCategoria">Adicionar categoria</a>
+
+
+<div class="row">
+    @{
+        foreach(var item in Model)
+        {
+            <div class='col-3'>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nome</h5>
+                        <p class="card-text">@item.Descricao</p>
+                        <a href="/Gatinhos/Visualizar/@item.Id">Visualizar categoria</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

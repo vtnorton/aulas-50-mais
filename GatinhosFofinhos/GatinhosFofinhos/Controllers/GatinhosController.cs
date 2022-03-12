@@ -39,5 +39,12 @@ namespace GatinhosFofinhos.Controllers
             _mainService.Adicionar(categoria);
             return Redirect("/");
         }
+
+        [Route("Gatinhos/Visualizar/{id}")]
+        public IActionResult Visualizar([FromRoute] int id)
+        {
+            var categoria = _mainService.ObterVisualizacao(id);
+            return View(categoria);
+        }
     }
 }

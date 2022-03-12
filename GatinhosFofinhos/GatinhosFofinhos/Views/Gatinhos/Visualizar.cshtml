@@ -1,0 +1,27 @@
+﻿@using GatinhosFofinhos.Models.ViewModels
+@model VisualizarViewModel
+
+<h2>@Model.Categoria.Nome</h2>
+<p>@Model.Categoria.Descricao</p>
+<a href="/">Voltar</a>
+
+<div class="row">
+    @{
+        foreach(var item in Model.Lista)
+        {
+            <div class="col-3">
+                <div class="card">
+                    <img src="@item.UrlDaImagem" class="card-img-top" alt="@item.Descricao">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nome</h5>
+                        <div class="alert alert-info">
+                          @item.Temperamento
+                        </div>
+                        <p class="card-text">@item.Descricao</p>
+                        <a href="#" class="btn btn-primary">@item.UrlDaWikipedia</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

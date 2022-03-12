@@ -34,5 +34,11 @@ namespace GatinhosFofinhos.Servico
 
             return new List<CategoriasDaAPIDeGatos>();
         } 
+
+        public List<FotosDeGatinhos> ObterGatosPorCategoria(int idCategoria)
+        {
+
+            return null;
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using GatinhosFofinhos.Models;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace GatinhosFofinhos.Repository
@@ -25,9 +27,14 @@ namespace GatinhosFofinhos.Repository
 
             var parametroDeDescricao = new SqlParameter()
             {
-                ParameterName = "@descricao",
-                Value = categoria.Descricao
+                ParameterName = "@descricao"
             };
+
+            if (categoria.Descricao != null)
+                parametroDeDescricao.Value = categoria.Descricao;
+            else
+                parametroDeDescricao.Value = DBNull.Value;
+            
 
             var parametroDeIdCategoria = new SqlParameter()
             {
@@ -51,8 +58,59 @@ namespace GatinhosFofinhos.Repository
             sqlComando.ExecuteNonQuery();
 
             _sqlConnection.Close();
+        }
 
+        public List<Categoria> SelectCategorias()
+        {
+            string comando = $"SELECT * FROM {_tabelaCategoria}";
+            var sqlCommand = new SqlCommand(comando, _sqlConnection);
+            List<Categoria> categorias = new List<Categoria>();
 
+            _sqlConnection.Open();
+            var resultado = sqlCommand.ExecuteReader();
+
+            while (resultado.Read())
+            {
+                var categoria = new Categoria()
+                {
+                    Nome = resultado["Nome"].ToString(),
+                    Descricao = resultado["Descricao"].ToString(),
+                    IdCategoria = (int)resultado["IdCategoria"]
+                };
+
+                categorias.Add(categoria);
+            }
+
+            _sqlConnection.Close();
+
+            return categorias;
+        }
+
+        public Categoria SelectCategoria(int idCategoria)
+        {
+            Categoria categoria = new Categoria();
+            string comando = $"SELECT * FROM {_tabelaCategoria} WHERE Id = @id";
+            var sqlCommand = new SqlCommand(comando, _sqlConnection);
+            var parametro = new SqlParameter()
+            {
+                ParameterName = "@id",
+                Value = idCategoria
+            };
+            sqlCommand.Parameters.Add(parametro);
+
+            _sqlConnection.Open();
+
+            var resultado = sqlCommand.ExecuteReader();
+            while (resultado.Read())
+            {
+                categoria.Nome = (string)resultado["Nome"];
+                categoria.IdCategoria = (int)resultado["IdCategoria"];
+                categoria.Descricao = (string)resultado["Descricao"];
+            }
+
+            _sqlConnection.Close();
+
+            return categoria;
         }
     }
 }
